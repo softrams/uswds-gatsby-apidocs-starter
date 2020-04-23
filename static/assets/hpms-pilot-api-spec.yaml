@@ -1,0 +1,711 @@
+openapi: 3.0.0
+info:
+  title: HPMS API Pilot
+  contact: {}
+  version: '1.0'
+servers:
+- url: http://example.com/api
+  variables: {}
+paths:
+  /idm/oauth/token:
+    post:
+      tags:
+      - Misc
+      summary: Request Token
+      operationId: RequestToken
+      parameters:
+      - name: Content-Type
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: application/x-www-form-urlencoded
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              required:
+              - userName
+              - keyId
+              - keySecret
+              - scopes
+              - hpmsUserId
+              type: object
+              properties:
+                userName:
+                  type: string
+                  example: '{{API_USER_NAME}}'
+                keyId:
+                  type: string
+                  example: '{{API_KEY_ID}}'
+                keySecret:
+                  type: string
+                  example: '{{API_KEY_SECRET}}'
+                scopes:
+                  type: string
+                  example: '{{API_SCOPES}}'
+                hpmsUserId:
+                  type: string
+                  example: '{{API_HPMS_USER_ID}}'
+        required: false
+      responses:
+        200:
+          description: ''
+          headers:
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 487
+            X-XSS-Protection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 1; mode=block
+            X-Frame-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: SAMEORIGIN
+            X-Download-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: noopen
+            X-Content-Type-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: nosniff
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"1e7-zfQN1PjAlJIZpS2e15JqOZ5AeaI"
+            X-Kong-Upstream-Latency:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 28
+            X-Kong-Proxy-Latency:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 14
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Sat, 18 Apr 2020 22:53:20 GMT
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Set-Cookie:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: akavpau_HPMS_TEST=1587250700~id=0edc5134eeafb14e4233b0a851e65f22; Path=/; Secure; SameSite=None
+            Strict-Transport-Security:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: max-age=31536000 ; includeSubDomains ; preload
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/RequestTokenExample'
+              example:
+                accessToken: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOiJwZHBmc19kcCIsInVzZXJJZCI6ImludGVybmFsLXRlc3QtYXBpIiwiaHBtc1VzZXJJZCI6Imp5eGEiLCJrZXkiOiJVYXk2ZXpkZXZDSDF3UjZOS1lOOEQyV3ZySlVybkRFNUVSU0l6c0lJcEw3YUY0ZHYwemtZcEd3ck9UbzdTaHdnd1AvQVVKSjlUbTI1dzdTVGduMjZ2dz09IiwiaWF0IjoxNTg3MjUwNDAwLCJleHAiOjE1ODcyNTQwMDAsImF1ZCI6ImFwaS5ocG1zLmNtcy5nb3YiLCJpc3MiOiJocG1zLmNtcy5nb3YifQ.IhKdVBtiqHb9Td-Am7-A_NJP4CzpGiKFY-RwEjaifLIdtWCEZv5mx5OjlftJ8usoPrObcjAoto2nV_k-Bwtm0Q
+                expires: 3600
+      deprecated: false
+  /pdpfs/RemoteOperations/uploadPricingFile:
+    post:
+      tags:
+      - Misc
+      summary: Submit Pricing File
+      operationId: SubmitPricingFile
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: '{{API_TOKEN}}'
+      - name: X-API-CONSUMER-ID
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: '{{API_KEY_ID}}'
+      - name: contractyear
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 2020
+      - name: contractid
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: H0111
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            encoding: {}
+            schema:
+              required:
+              - file
+              type: object
+              properties:
+                file:
+                  type: string
+        required: false
+      responses:
+        200:
+          description: ''
+          headers:
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 600
+            X-XSS-Protection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 1; mode=block
+            X-Frame-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: SAMEORIGIN
+            X-Download-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: noopen
+            X-Content-Type-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: nosniff
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"258-cDaVlwE4PWHlajeShGPfx9PrWDY"
+            X-Kong-Upstream-Latency:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 421
+            X-Kong-Proxy-Latency:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 11
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Sat, 18 Apr 2020 23:01:57 GMT
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Set-Cookie:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: akavpau_HPMS_TEST=1587251217~id=01006dc97c96a85c4a7d3a02efa30a19; Path=/; Secure; SameSite=None
+            Strict-Transport-Security:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: max-age=31536000 ; includeSubDomains ; preload
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/SuccessfulSubmissionResponse'
+              example:
+                response:
+                  submissionFile: 9748
+                  contract-id: H0111
+                  submissionWindowId: 72
+                  contract-year: 2020
+                  version: 110
+                  confirmation-id: H0111-2020-20200418230157
+                  filename: pdpfs/uploads/72/H0111-2020-23818924069099712
+                  file-size: 
+                  file-status: 
+                  target-location: 
+                  status: 0
+                  celngPriceCnt: 
+                  pricingFilInfoCnt: 
+                  phrmcyCostFilInfoCnt: 
+                  celngPriceRungCnt: 
+                  pricingFilInfoRungCnt: 
+                  phrmcyCostFilInfoRungCnt: 
+                  submission-date: 2020-04-18T23:01:57Z
+                  submitter: jyxa
+                  lastUpdtdDt: 
+                  lastUpdtdBy: 
+                  statusName: Uploading/Initial Processing
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+              example:
+                error:
+                  statusCode: 400
+                  name: Bad Request
+                  message: Missing contract id
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+              example:
+                error:
+                  statusCode: 401
+                  name: Unauthorized
+                  message: 'API user: internal-test-api associated with HPMS user: jyxa is not authorized to operate on contract: H0001. '
+      deprecated: false
+      security: []
+  /pdpfs/RemoteOperations/checkSubmissionStatus:
+    post:
+      tags:
+      - Misc
+      summary: Check Status
+      operationId: CheckStatus
+      parameters:
+      - name: Authorization
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: '{{API_TOKEN}}'
+      - name: X-API-CONSUMER-ID
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: '{{API_KEY_ID}}'
+      - name: contractyear
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: integer
+          format: int32
+          example: 2020
+      - name: contractid
+        in: header
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: H0111
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckStatusRequest'
+            example:
+              confirmationNumbers:
+              - '{{SUBM_CFM_ID}}'
+        required: true
+      responses:
+        200:
+          description: ''
+          headers:
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 129
+            X-XSS-Protection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 1; mode=block
+            X-Frame-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: SAMEORIGIN
+            X-Download-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: noopen
+            X-Content-Type-Options:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: nosniff
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"81-448nUfFX4sDURvOkasrWM0Ocslo"
+            X-Kong-Upstream-Latency:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 60
+            X-Kong-Proxy-Latency:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: 31
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Sat, 18 Apr 2020 23:07:58 GMT
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Set-Cookie:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: akavpau_HPMS_TEST=1587251578~id=05891448785c0a4f3b3caf86d86a4da3; Path=/; Secure; SameSite=None
+            Strict-Transport-Security:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: max-age=31536000 ; includeSubDomains ; preload
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/SuccessfulResponse'
+              example:
+                submissionStatuses:
+                - ConfirmationNumber: H0111-2020-20200418230157
+                  SubmissionStatus: Level Two Validation in Progress
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+              example:
+                error:
+                  statusCode: 400
+                  name: Bad Request
+                  message: Missing contract id
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+              example:
+                error:
+                  statusCode: 401
+                  name: Unauthorized
+                  message: 'API user: internal-test-api associated with HPMS user: jyxa is not authorized to operate on contract: H0001. '
+      deprecated: false
+      security: []
+components:
+  schemas:
+    RequestTokenExample:
+      title: RequestTokenExample
+      required:
+      - accessToken
+      - expires
+      type: object
+      properties:
+        accessToken:
+          type: string
+        expires:
+          type: integer
+          format: int32
+      example:
+        accessToken: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZXMiOiJwZHBmc19kcCIsInVzZXJJZCI6ImludGVybmFsLXRlc3QtYXBpIiwiaHBtc1VzZXJJZCI6Imp5eGEiLCJrZXkiOiJVYXk2ZXpkZXZDSDF3UjZOS1lOOEQyV3ZySlVybkRFNUVSU0l6c0lJcEw3YUY0ZHYwemtZcEd3ck9UbzdTaHdnd1AvQVVKSjlUbTI1dzdTVGduMjZ2dz09IiwiaWF0IjoxNTg3MjUwNDAwLCJleHAiOjE1ODcyNTQwMDAsImF1ZCI6ImFwaS5ocG1zLmNtcy5nb3YiLCJpc3MiOiJocG1zLmNtcy5nb3YifQ.IhKdVBtiqHb9Td-Am7-A_NJP4CzpGiKFY-RwEjaifLIdtWCEZv5mx5OjlftJ8usoPrObcjAoto2nV_k-Bwtm0Q
+        expires: 3600
+    Error:
+      title: Error
+      required:
+      - statusCode
+      - name
+      - message
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int32
+        name:
+          type: string
+        message:
+          type: string
+      example:
+        statusCode: 400
+        name: Bad Request
+        message: Missing contract id
+    SuccessfulSubmissionResponse:
+      title: SuccessfulSubmissionResponse
+      required:
+      - response
+      type: object
+      properties:
+        response:
+          $ref: '#/components/schemas/Response'
+      example:
+        response:
+          submissionFile: 9748
+          contract-id: H0111
+          submissionWindowId: 72
+          contract-year: 2020
+          version: 110
+          confirmation-id: H0111-2020-20200418230157
+          filename: pdpfs/uploads/72/H0111-2020-23818924069099712
+          file-size: 
+          file-status: 
+          target-location: 
+          status: 0
+          celngPriceCnt: 
+          pricingFilInfoCnt: 
+          phrmcyCostFilInfoCnt: 
+          celngPriceRungCnt: 
+          pricingFilInfoRungCnt: 
+          phrmcyCostFilInfoRungCnt: 
+          submission-date: 2020-04-18T23:01:57Z
+          submitter: jyxa
+          lastUpdtdDt: 
+          lastUpdtdBy: 
+          statusName: Uploading/Initial Processing
+    Response:
+      title: Response
+      required:
+      - submissionFile
+      - contract-id
+      - submissionWindowId
+      - contract-year
+      - version
+      - confirmation-id
+      - filename
+      - file-size
+      - file-status
+      - target-location
+      - status
+      - celngPriceCnt
+      - pricingFilInfoCnt
+      - phrmcyCostFilInfoCnt
+      - celngPriceRungCnt
+      - pricingFilInfoRungCnt
+      - phrmcyCostFilInfoRungCnt
+      - submission-date
+      - submitter
+      - lastUpdtdDt
+      - lastUpdtdBy
+      - statusName
+      type: object
+      properties:
+        submissionFile:
+          type: integer
+          format: int32
+        contract-id:
+          type: string
+        submissionWindowId:
+          type: integer
+          format: int32
+        contract-year:
+          type: integer
+          format: int32
+        version:
+          type: integer
+          format: int32
+        confirmation-id:
+          type: string
+        filename:
+          type: string
+        file-size:
+          type: string
+          nullable: true
+        file-status:
+          type: string
+          nullable: true
+        target-location:
+          type: string
+          nullable: true
+        status:
+          type: string
+        celngPriceCnt:
+          type: string
+          nullable: true
+        pricingFilInfoCnt:
+          type: string
+          nullable: true
+        phrmcyCostFilInfoCnt:
+          type: string
+          nullable: true
+        celngPriceRungCnt:
+          type: string
+          nullable: true
+        pricingFilInfoRungCnt:
+          type: string
+          nullable: true
+        phrmcyCostFilInfoRungCnt:
+          type: string
+          nullable: true
+        submission-date:
+          type: string
+        submitter:
+          type: string
+        lastUpdtdDt:
+          type: string
+          nullable: true
+        lastUpdtdBy:
+          type: string
+          nullable: true
+        statusName:
+          type: string
+      example:
+        submissionFile: 9748
+        contract-id: H0111
+        submissionWindowId: 72
+        contract-year: 2020
+        version: 110
+        confirmation-id: H0111-2020-20200418230157
+        filename: pdpfs/uploads/72/H0111-2020-23818924069099712
+        file-size: 
+        file-status: 
+        target-location: 
+        status: 0
+        celngPriceCnt: 
+        pricingFilInfoCnt: 
+        phrmcyCostFilInfoCnt: 
+        celngPriceRungCnt: 
+        pricingFilInfoRungCnt: 
+        phrmcyCostFilInfoRungCnt: 
+        submission-date: 2020-04-18T23:01:57Z
+        submitter: jyxa
+        lastUpdtdDt: 
+        lastUpdtdBy: 
+        statusName: Uploading/Initial Processing
+    Unauthorized:
+      title: Unauthorized
+      required:
+      - error
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/Error'
+      example:
+        error:
+          statusCode: 401
+          name: Unauthorized
+          message: 'API user: internal-test-api associated with HPMS user: jyxa is not authorized to operate on contract: H0001. '
+    CheckStatusRequest:
+      title: CheckStatusRequest
+      required:
+      - confirmationNumbers
+      type: object
+      properties:
+        confirmationNumbers:
+          type: array
+          items:
+            type: string
+          description: ''
+      example:
+        confirmationNumbers:
+        - '{{SUBM_CFM_ID}}'
+    SuccessfulResponse:
+      title: SuccessfulResponse
+      required:
+      - submissionStatuses
+      type: object
+      properties:
+        submissionStatuses:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubmissionStatus'
+          description: ''
+      example:
+        submissionStatuses:
+        - ConfirmationNumber: H0111-2020-20200418230157
+          SubmissionStatus: Level Two Validation in Progress
+    SubmissionStatus:
+      title: SubmissionStatus
+      required:
+      - ConfirmationNumber
+      - SubmissionStatus
+      type: object
+      properties:
+        ConfirmationNumber:
+          type: string
+        SubmissionStatus:
+          type: string
+      example:
+        ConfirmationNumber: H0111-2020-20200418230157
+        SubmissionStatus: Level Two Validation in Progress
+tags:
+- name: Misc
+  description: ''
