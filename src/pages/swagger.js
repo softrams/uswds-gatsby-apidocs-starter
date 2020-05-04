@@ -11,7 +11,8 @@ const SwaggerUIPage = () => (
     <SEO title="API Specification" />
     <h1>API Sandbox</h1>
     <div className="usa-sections">
-      <SwaggerUI url="/assets/hpms-pilot-api-spec.yaml" docExpansion="list" />
+      {/* URL or path to local file in assets folder */}
+      <SwaggerUI url="/assets/swagger.json" docExpansion="list" />
     </div>
     <Link to="/">Go back to the homepage</Link>
   </Layout>

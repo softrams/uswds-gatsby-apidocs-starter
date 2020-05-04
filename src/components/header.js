@@ -2,7 +2,7 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 
-const Header = ({ siteTitle }) => (
+const Header = ({ siteTitle, pages }) => (
   <header className="usa-header usa-header--basic">
     <div className="usa-nav-container">
       <div className="usa-navbar">
@@ -22,42 +22,22 @@ const Header = ({ siteTitle }) => (
         <ul className="usa-nav__primary usa-accordion">
           <li className="usa-nav__primary-item">
             <button
-              className="usa-accordion__button usa-nav__link  usa-current"
-              aria-expanded="false"
-              aria-controls="basic-nav-section-one"
-            >
-              <span>Current section</span>
-            </button>
-            <ul id="basic-nav-section-one" className="usa-nav__submenu" hidden>
-              <li className="usa-nav__submenu-item">
-                <a href="/">Navigation link</a>
-              </li>
-              <li className="usa-nav__submenu-item">
-                <a href="/">Navigation link</a>
-              </li>
-              <li className="usa-nav__submenu-item">
-                <a href="/">Navigation link</a>
-              </li>
-            </ul>
-          </li>
-          <li className="usa-nav__primary-item">
-            <button
               className="usa-accordion__button usa-nav__link"
               aria-expanded="false"
               aria-controls="basic-nav-section-two"
             >
-              <span>Section</span>
+              <span>Documentation</span>
             </button>
             <ul id="basic-nav-section-two" className="usa-nav__submenu" hidden>
-              <li className="usa-nav__submenu-item">
-                <a href="#">Navigation link</a>
-              </li>
-              <li className="usa-nav__submenu-item">
-                <a href="#">Navigation link</a>
-              </li>
-              <li className="usa-nav__submenu-item">
-                <a href="#">Navigation link</a>
-              </li>
+              {pages.map(edge => {
+                return (
+                  <li className="usa-nav__submenu-item">
+                    <a href={edge.node.frontmatter.path}>
+                      {edge.node.frontmatter.title}
+                    </a>
+                  </li>
+                )
+              })}
             </ul>
           </li>
           <li className="usa-nav__primary-item">
@@ -111,13 +91,5 @@ const Header = ({ siteTitle }) => (
   //   </div>
   // </header>
 )
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
 
 export default Header

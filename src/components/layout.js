@@ -21,6 +21,17 @@ const Layout = ({ children }) => {
           title
         }
       }
+      allMarkdownRemark {
+        edges {
+          node {
+            id
+            frontmatter {
+              path
+              title
+            }
+          }
+        }
+      }
     }
   `)
 
@@ -101,9 +112,12 @@ const Layout = ({ children }) => {
           </div>
         </div>
       </section>
-
       <div className="usa-overlay"></div>
-      <Header siteTitle={data.site.siteMetadata.title} />
+
+      <Header
+        siteTitle={data.site.siteMetadata.title}
+        pages={data.allMarkdownRemark.edges}
+      />
       <div
         style={{
           margin: `0 auto`,
