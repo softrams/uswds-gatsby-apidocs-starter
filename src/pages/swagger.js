@@ -3,7 +3,8 @@ import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import SwaggerUI from "swagger-ui-react"
+import Loadable from "@loadable/component"
+const SwaggerUI = Loadable(() => import("swagger-ui-react"))
 import "swagger-ui-react/swagger-ui.css"
 
 const SwaggerUIPage = () => (

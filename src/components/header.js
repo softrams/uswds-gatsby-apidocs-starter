@@ -9,7 +9,7 @@ const Header = ({ siteTitle, pages }) => (
         <div className="usa-logo" id="basic-logo">
           <em className="usa-logo__text">
             <Link to="/" aria-label="Home">
-              HPMS API
+              Awesome Product/Service API
             </Link>
           </em>
         </div>
