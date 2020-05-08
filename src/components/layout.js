@@ -21,7 +21,7 @@ const Layout = ({ children }) => {
           title
         }
       }
-      allMarkdownRemark {
+      allMarkdownRemark(sort: { order: ASC, fields: [frontmatter___title] }) {
         edges {
           node {
             id
@@ -118,14 +118,8 @@ const Layout = ({ children }) => {
         siteTitle={data.site.siteMetadata.title}
         pages={data.allMarkdownRemark.edges}
       />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
+      <div>
+        <main id="main-content">{children}</main>
         <footer className="usa-footer usa-footer--slim">
           <div className="grid-container usa-footer__return-to-top">
             <a href="#">Return to top</a>

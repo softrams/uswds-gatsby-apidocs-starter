@@ -9,7 +9,7 @@ const Header = ({ siteTitle, pages }) => (
         <div className="usa-logo" id="basic-logo">
           <em className="usa-logo__text">
             <Link to="/" aria-label="Home">
-              Awesome Product/Service API
+              Awesome Project
             </Link>
           </em>
         </div>
@@ -26,7 +26,7 @@ const Header = ({ siteTitle, pages }) => (
               aria-expanded="false"
               aria-controls="basic-nav-section-two"
             >
-              <span>Documentation</span>
+              <span>Pages</span>
             </button>
             <ul id="basic-nav-section-two" className="usa-nav__submenu" hidden>
               {pages.map(edge => {
@@ -41,8 +41,13 @@ const Header = ({ siteTitle, pages }) => (
             </ul>
           </li>
           <li className="usa-nav__primary-item">
+            <Link to="/page-2" className="usa-nav__link">
+              <span>Documentation</span>
+            </Link>
+          </li>
+          <li className="usa-nav__primary-item">
             <Link to="/swagger" className="usa-nav__link">
-              <span>Sandbox</span>
+              <span>API Sandbox</span>
             </Link>
           </li>
         </ul>
@@ -63,33 +68,6 @@ const Header = ({ siteTitle, pages }) => (
       </nav>
     </div>
   </header>
-
-  // <header
-  //   style={{
-  //     background: `rebeccapurple`,
-  //     marginBottom: `1.45rem`,
-  //   }}
-  // >
-  //   <div
-  //     style={{
-  //       margin: `0 auto`,
-  //       maxWidth: 960,
-  //       padding: `1.45rem 1.0875rem`,
-  //     }}
-  //   >
-  //     <h1 style={{ margin: 0 }}>
-  //       <Link
-  //         to="/"
-  //         style={{
-  //           color: `white`,
-  //           textDecoration: `none`,
-  //         }}
-  //       >
-  //         {siteTitle}
-  //       </Link>
-  //     </h1>
-  //   </div>
-  // </header>
 )
 
 export default Header

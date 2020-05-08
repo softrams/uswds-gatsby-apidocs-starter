@@ -7,7 +7,6 @@ import SEO from "../components/seo"
 const SecondPage = () => (
   <Layout>
     <SEO title="Page two" />
-    <h1>Hi from the second page</h1>
     <div className="usa-section">
       <div className="grid-container">
         <div className="grid-row grid-gap">
@@ -116,7 +115,6 @@ const SecondPage = () => (
         </div>
       </div>
     </div>
-    <Link to="/">Go back to the homepage</Link>
   </Layout>
 )
 
