@@ -6,6 +6,38 @@ Kick off your project with this default boilerplate. This starter template curre
 
 You may checkout the demo app at https://uswds-gatsby-apidocs-starter.softrams.cloud.
 
+## About
+
+[USWDS](https://designsystem.digital.gov/) is a great design system framework that allow designers and developers build clean and accessible web sites and web applications. Yet, many agencies still develop and deploy applications and websites that do not follow any consistent framework, leave alone USWDS framework, to provide a consistent experience for customers. More over, many times may probably keep reinventing the wheel with their own versions even if those applications and websites are meant to offer very similar if not identical services. For example, out of three API pilots that we know of, all three groups under CMS, have built different websites to share API documentation.
+
+This pilot aims to build a toolkit/framework to redefine the way static and dynamic information oriented sites/applications are built and democratize modern web applications with starter templates.
+
+- Use USWDS Design System
+- Rely on Gatsbyjs to build modern Progressive Web Applications (PWA)
+- Builds a couple of starter templates to prove the concept for rapid adoption and development
+- Open source the framework and
+- Nurture the community to develop more such starter templates
+
+This can have a significant impact in many ways.
+
+- Consistent, delightful and modern experiences for customers across Federal Agencies
+- Rapid prototyping and development for Federal Agencies and Federal Contractors without having to reinvent the wheel
+- Accelerates innovation and delivery to market
+
+## Roadmap
+
+- [x] Create API Docs starter
+- [ ] User Research
+- [ ] Identify user persona & key groups
+  - [ ] Organizations & Developers new to APIs
+  - [ ] Organizations & Developers that may have some experience consuming APIs
+  - [ ] Organizations & Developers that build applications using APIs
+- [ ] Identify key information useful for API developers, API Governance and API Consumers
+- [ ] Review API Documentation offered on different services
+- [ ] Create UX Designs for content layout and presentation
+- [ ] Create markdown templates with default content
+- [ ] Provide options to manage content via headless CMS Systems
+
 ## 🚀 Quick start
 
 1.  **Create a Gatsby site.**
