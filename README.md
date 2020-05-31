@@ -76,4 +76,12 @@ Swagger UI is included for sharing API Documentation and offering a ready to use
 
 ## Contributing
 
-This is a work in progress and welcome PRs/Isues with suggestions and improvements.
+This is a work in progress and welcome PRs/Isues with suggestions and improvements. Please see [./CONTRIBUTING.md](./CONTRIBUTING.md) for more details.
+
+## Credits
+
+This API docs starter template is built using
+
+- [Gatsby](https://www.gatsbyjs.org/)
+- [Gatsby Default Starter Template](https://github.com/gatsbyjs/gatsby-starter-default)
+- [US Web Design System](https://designsystem.digital.gov/)
