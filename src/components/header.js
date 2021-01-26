@@ -49,6 +49,11 @@ const Header = ({ siteTitle, pages }) => (
               <span>API Sandbox</span>
             </Link>
           </li>
+          <li className="usa-nav__primary-item">
+            <Link to="/terms" className="usa-nav__link">
+              <span>Terms</span>
+            </Link>
+          </li>
         </ul>
         <form className="usa-search usa-search--small " role="search">
           <label className="usa-sr-only" htmlFor="basic-search-field-small">
