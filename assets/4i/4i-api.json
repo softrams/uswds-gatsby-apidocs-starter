@@ -1,0 +1,3730 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "4i PECOS Provider API (Public)",
+    "version": "1.0",
+    "description": "Provider Enrollment, Chain, and Ownership System (PECOS) data is used to verify Provider & Supplier Enrollment Status, Medicare Exclusion Status, Reassignment List, and various Medicare provider enrollment requirements for entities to participate in CMMI Models. \n\nCurrently CMMI models send files to the Center for Program Integrity and the CPI Vetting Contractor (CPI/Acumen) to verify status initiating a manual process that takes approximately 2 weeks to return the vetting results for models. This process do not allow CMMI models and supporting applications to offer real-time or near real-time feedback for participating entities resulting in longer onboarding and vetting process.\n\nTo support real time vetting process and thus enable real time feedback, 4i System relies on Provider Vetting API built by Softrams on top of PECOS Global Extract Data. This API enablement allows to offer automated and real time verification of provider information for vetting process for various CMMI Models supported within in 4i. \n\nThis generic API can be used by other CMMI models for provider vetting process outside 4i System.\n\n> PECOS Global Extract Data is refreshed every 24 hours.\n",
+    "contact": {},
+    "license": {
+      "name": "MIT License",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://4innovation-impl-api.cms.gov",
+      "description": "Sandbox API Server URL"
+    }
+  ],
+  "paths": {
+    "/idm/auth/oauth2/v1/token": {
+      "post": {
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAccessTokenRequest"
+              },
+              "example": {
+                "client_id": "{{API_CLIENT_ID}}",
+                "client_secret": "{{API_KEY_SECRET}}",
+                "scope": "pecos",
+                "grant_type": "client_credentials"
+              }
+            }
+          },
+          "required": true
+        },
+        "tags": ["Authorization"],
+        "parameters": [
+          {
+            "style": "simple",
+            "name": "Authorization",
+            "description": "",
+            "schema": {
+              "type": "string",
+              "example": "anonymous"
+            },
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "883"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 14:46:34 GMT"
+                  }
+                }
+              },
+              "x-amzn-RequestId": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "5b117b46-e14b-4abd-a23e-29c6b44be1f0"
+                  }
+                }
+              },
+              "access-control-allow-origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "x-amzn-Remapped-content-length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "883"
+                  }
+                }
+              },
+              "x-amzn-Remapped-connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "close"
+                  }
+                }
+              },
+              "x-amz-apigw-id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "cVhroFUFIAMFsFA="
+                  }
+                }
+              },
+              "etag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"373-GUySgI/NQG66++bcgy64W9bPR2M\""
+                  }
+                }
+              },
+              "x-powered-by": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Root=1-6052164a-794437f900642dfa45c196c5;Sampled=0"
+                  }
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 14:46:34 GMT"
+                  }
+                }
+              },
+              "X-Cache": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Miss from cloudfront"
+                  }
+                }
+              },
+              "Via": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1.1 07c18636d05168ab2f68b990a4913cf5.cloudfront.net (CloudFront)"
+                  }
+                }
+              },
+              "X-Amz-Cf-Pop": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "DFW50-C1"
+                  }
+                }
+              },
+              "X-Amz-Cf-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "JKskCPKufrMt6kuL2MopC1NZn1pQMHUqveINbWLyV7Joa2CFZUDU3A=="
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200-Success"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "50"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 14:45:05 GMT"
+                  }
+                }
+              },
+              "x-amzn-RequestId": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "8f5a5f00-e8cc-4b06-9e68-4feb16eda8de"
+                  }
+                }
+              },
+              "access-control-allow-origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "x-amzn-Remapped-content-length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "50"
+                  }
+                }
+              },
+              "x-amzn-Remapped-connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "close"
+                  }
+                }
+              },
+              "x-amz-apigw-id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "cVhdqEZ_oAMFnVQ="
+                  }
+                }
+              },
+              "etag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"32-U2Vw9q96f6igJiKLLAxwjk4iy1o\""
+                  }
+                }
+              },
+              "x-powered-by": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Express"
+                  }
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Root=1-605215f0-76225a1343adf11a79b166df;Sampled=0"
+                  }
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 14:45:05 GMT"
+                  }
+                }
+              },
+              "X-Cache": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Error from cloudfront"
+                  }
+                }
+              },
+              "Via": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1.1 07c18636d05168ab2f68b990a4913cf5.cloudfront.net (CloudFront)"
+                  }
+                }
+              },
+              "X-Amz-Cf-Pop": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "DFW50-C1"
+                  }
+                }
+              },
+              "X-Amz-Cf-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "zA731hUGjbDu65aJYasnWS1HgZLqf-VLtPJpEtAfbOCW2ZUMzbRkoA=="
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/400BadCredentials1"
+                }
+              }
+            },
+            "description": "Bad Request"
+          }
+        },
+        "deprecated": false,
+        "operationId": "GetAccessToken",
+        "summary": "Get Access Token",
+        "description": "Retrieve API Access Token and must request for scope 'pecos' in order to use API end points described in this specification."
+      }
+    },
+    "/pecos/v1/secure/providers/medicare-exclusion-check": {
+      "post": {
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckforMedicareExclusionRequest"
+              },
+              "example": {
+                "tin": "123456789"
+              }
+            }
+          },
+          "required": true
+        },
+        "tags": ["Provider Vetting"],
+        "responses": {
+          "200": {
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "22"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 14:47:46 GMT"
+                  }
+                }
+              },
+              "x-amzn-RequestId": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "d1feabac-2504-41b1-8c86-37d5f4d4f3e9"
+                  }
+                }
+              },
+              "x-dns-prefetch-control": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "off"
+                  }
+                }
+              },
+              "x-xss-protection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1; mode=block"
+                  }
+                }
+              },
+              "access-control-allow-origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "strict-transport-security": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "max-age=15552000; includeSubDomains"
+                  }
+                }
+              },
+              "x-frame-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "SAMEORIGIN"
+                  }
+                }
+              },
+              "x-amzn-Remapped-content-length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "22"
+                  }
+                }
+              },
+              "x-amzn-Remapped-connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "close"
+                  }
+                }
+              },
+              "x-download-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "noopen"
+                  }
+                }
+              },
+              "x-amz-apigw-id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "cVh2TEA9oAMF6Pw="
+                  }
+                }
+              },
+              "x-content-type-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "nosniff"
+                  }
+                }
+              },
+              "etag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"16-3DexFbtIz9YlC3OxH37HQ5dBI0c\""
+                  }
+                }
+              },
+              "request-id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "5e102a0862dc5000"
+                  }
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Root=1-6052168e-122220f47f870e4449ca5fcd;Sampled=0"
+                  }
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 14:47:46 GMT"
+                  }
+                }
+              },
+              "X-Cache": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Miss from cloudfront"
+                  }
+                }
+              },
+              "Via": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1.1 07c18636d05168ab2f68b990a4913cf5.cloudfront.net (CloudFront)"
+                  }
+                }
+              },
+              "X-Amz-Cf-Pop": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "DFW50-C1"
+                  }
+                }
+              },
+              "X-Amz-Cf-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "_2cswdyS1pQFBBsrtpNJDfmhOC95WSuRKPkHEJadX94v4Rs7F5yyPw=="
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200-Success1"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "401": {
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "26"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 15:25:43 GMT"
+                  }
+                }
+              },
+              "x-amzn-RequestId": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "d59ae7d5-14f4-4ae7-a5cd-baf08c1d80b5"
+                  }
+                }
+              },
+              "x-amzn-ErrorType": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "UnauthorizedException"
+                  }
+                }
+              },
+              "x-amz-apigw-id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "cVnahEiJoAMFt9w="
+                  }
+                }
+              },
+              "X-Cache": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Error from cloudfront"
+                  }
+                }
+              },
+              "Via": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1.1 9805d3579496be819558262e04360abb.cloudfront.net (CloudFront)"
+                  }
+                }
+              },
+              "X-Amz-Cf-Pop": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "DFW50-C1"
+                  }
+                }
+              },
+              "X-Amz-Cf-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "DoGjfHfXDvuiGHNpewsxUd7ivLW79Isd_FF58ZXoVgVnoJl5G_dVzA=="
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401-Invalid~1expiredtoken1"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "AccessToken": []
+          }
+        ],
+        "operationId": "CheckforMedicareExclusion",
+        "summary": "Check for Medicare Exclusion",
+        "description": "Check for medicare exclusions"
+      }
+    },
+    "/pecos/v1/secure/providers/enrollment-tin": {
+      "post": {
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FetchenrollmentTINRequest"
+              },
+              "example": {
+                "tin": "123456789",
+                "npi": "1234567890"
+              }
+            }
+          },
+          "required": true
+        },
+        "tags": ["Provider Vetting"],
+        "responses": {
+          "200": {
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "173"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 14:48:01 GMT"
+                  }
+                }
+              },
+              "x-amzn-RequestId": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "19f2f04e-0a71-4e3a-9f40-39d607467126"
+                  }
+                }
+              },
+              "x-dns-prefetch-control": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "off"
+                  }
+                }
+              },
+              "x-xss-protection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1; mode=block"
+                  }
+                }
+              },
+              "access-control-allow-origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "strict-transport-security": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "max-age=15552000; includeSubDomains"
+                  }
+                }
+              },
+              "x-frame-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "SAMEORIGIN"
+                  }
+                }
+              },
+              "x-amzn-Remapped-content-length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "173"
+                  }
+                }
+              },
+              "x-amzn-Remapped-connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "close"
+                  }
+                }
+              },
+              "x-download-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "noopen"
+                  }
+                }
+              },
+              "x-amz-apigw-id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "cVh5NEBtIAMFS9A="
+                  }
+                }
+              },
+              "x-content-type-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "nosniff"
+                  }
+                }
+              },
+              "etag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"ad-p7F84vaYoPpCc/EPcL1zRy3mRhI\""
+                  }
+                }
+              },
+              "request-id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "5e102a19801c5000"
+                  }
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Root=1-605216a1-405ab979053ab4d1521ab323;Sampled=0"
+                  }
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 14:48:01 GMT"
+                  }
+                }
+              },
+              "X-Cache": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Miss from cloudfront"
+                  }
+                }
+              },
+              "Via": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1.1 07c18636d05168ab2f68b990a4913cf5.cloudfront.net (CloudFront)"
+                  }
+                }
+              },
+              "X-Amz-Cf-Pop": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "DFW50-C1"
+                  }
+                }
+              },
+              "X-Amz-Cf-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "siq3lRpouy-8mrSuH1FdJ0lrq0tAculuCMhn2hxA4isG-Nb5mQAncg=="
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200-Success2"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "401": {
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "26"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 15:26:15 GMT"
+                  }
+                }
+              },
+              "x-amzn-RequestId": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "aabd7d05-1872-4673-a24d-840719bce112"
+                  }
+                }
+              },
+              "x-amzn-ErrorType": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "UnauthorizedException"
+                  }
+                }
+              },
+              "x-amz-apigw-id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "cVnfnEzToAMFU2Q="
+                  }
+                }
+              },
+              "X-Cache": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Error from cloudfront"
+                  }
+                }
+              },
+              "Via": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1.1 9805d3579496be819558262e04360abb.cloudfront.net (CloudFront)"
+                  }
+                }
+              },
+              "X-Amz-Cf-Pop": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "DFW50-C1"
+                  }
+                }
+              },
+              "X-Amz-Cf-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "9P4GH929AGjY8FcD4UvoJAvNTDeAu-Ys1PdGr50tnwhGyHCWMq0PiQ=="
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401-Invalid~1expiredtoken1"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "AccessToken": []
+          }
+        ],
+        "operationId": "FetchenrollmentTIN",
+        "summary": "Fetch enrollment TIN",
+        "description": "Fetch enrollment TIN for a given billing TIN (for sole proprietor type businesses) and NPI."
+      }
+    },
+    "/pecos/v1/secure/providers/individual-providers": {
+      "post": {
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FetchIndividualProvidersRequest"
+              },
+              "example": {
+                "tin": "123456789",
+                "npi": "12345677890"
+              }
+            }
+          },
+          "required": true
+        },
+        "tags": ["Provider Vetting"],
+        "responses": {
+          "200": {
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "296"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 14:51:14 GMT"
+                  }
+                }
+              },
+              "x-amzn-RequestId": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "79b653e6-225a-4672-bd7d-3d3a8f670529"
+                  }
+                }
+              },
+              "x-dns-prefetch-control": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "off"
+                  }
+                }
+              },
+              "x-xss-protection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1; mode=block"
+                  }
+                }
+              },
+              "access-control-allow-origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "strict-transport-security": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "max-age=15552000; includeSubDomains"
+                  }
+                }
+              },
+              "x-frame-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "SAMEORIGIN"
+                  }
+                }
+              },
+              "x-amzn-Remapped-content-length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "296"
+                  }
+                }
+              },
+              "x-amzn-Remapped-connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "close"
+                  }
+                }
+              },
+              "x-download-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "noopen"
+                  }
+                }
+              },
+              "x-amz-apigw-id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "cViXSH4yoAMFY9w="
+                  }
+                }
+              },
+              "x-content-type-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "nosniff"
+                  }
+                }
+              },
+              "etag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"128-ZYLseNFXM0gr+zOOJMDmjheLUfg\""
+                  }
+                }
+              },
+              "request-id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "5e102ad59ddc5000"
+                  }
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Root=1-60521761-5e3470902455f5562849551a;Sampled=0"
+                  }
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 14:51:14 GMT"
+                  }
+                }
+              },
+              "X-Cache": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Miss from cloudfront"
+                  }
+                }
+              },
+              "Via": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1.1 07c18636d05168ab2f68b990a4913cf5.cloudfront.net (CloudFront)"
+                  }
+                }
+              },
+              "X-Amz-Cf-Pop": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "DFW50-C1"
+                  }
+                }
+              },
+              "X-Amz-Cf-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "qgiclfxB82Z1bzGrxgHTnAI7dtWY7sxBTuxTNjOxYI138PVS1F09MA=="
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200-Success3"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "401": {
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "26"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 15:26:32 GMT"
+                  }
+                }
+              },
+              "x-amzn-RequestId": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "639f8609-2019-4369-aa54-d1abb9b41099"
+                  }
+                }
+              },
+              "x-amzn-ErrorType": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "UnauthorizedException"
+                  }
+                }
+              },
+              "x-amz-apigw-id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "cVniXF8NoAMFbXw="
+                  }
+                }
+              },
+              "X-Cache": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Error from cloudfront"
+                  }
+                }
+              },
+              "Via": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1.1 9805d3579496be819558262e04360abb.cloudfront.net (CloudFront)"
+                  }
+                }
+              },
+              "X-Amz-Cf-Pop": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "DFW50-C1"
+                  }
+                }
+              },
+              "X-Amz-Cf-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "39foXgnIAMiPMkHsNO5xkBcTCCl0IUrqc8oddRdoE30mOooYmycPcQ=="
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401-Invalid~1expiredtoken1"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "AccessToken": []
+          }
+        ],
+        "operationId": "FetchIndividualProviders",
+        "summary": "Fetch Individual Providers",
+        "description": "Retrieve Solo Practitioner (Individual Provider) Provider data, includes but not limited to mid-level Clinicians\nsuch as Physician Assistants and Nurse Practitioners.\n\nReturned data includes Medicare Exclusion Check, Active Enrollment Check, PTAN and Legal Business Name."
+      }
+    },
+    "/pecos/v1/secure/providers/facility-providers": {
+      "post": {
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FetchFacilityProvidersRequest"
+              },
+              "example": {
+                "tin": "123456789",
+                "npi": "1234567890"
+              }
+            }
+          },
+          "required": true
+        },
+        "tags": ["Provider Vetting"],
+        "responses": {
+          "200": {
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "67"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 14:53:35 GMT"
+                  }
+                }
+              },
+              "x-amzn-RequestId": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "cee2850a-8838-4bfb-b577-3cb0a695bddc"
+                  }
+                }
+              },
+              "x-dns-prefetch-control": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "off"
+                  }
+                }
+              },
+              "x-xss-protection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1; mode=block"
+                  }
+                }
+              },
+              "access-control-allow-origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "strict-transport-security": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "max-age=15552000; includeSubDomains"
+                  }
+                }
+              },
+              "x-frame-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "SAMEORIGIN"
+                  }
+                }
+              },
+              "x-amzn-Remapped-content-length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "67"
+                  }
+                }
+              },
+              "x-amzn-Remapped-connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "close"
+                  }
+                }
+              },
+              "x-download-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "noopen"
+                  }
+                }
+              },
+              "x-amz-apigw-id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "cVitcFybIAMF3NA="
+                  }
+                }
+              },
+              "x-content-type-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "nosniff"
+                  }
+                }
+              },
+              "etag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"43-Vmyo+WmdHj22x8UbZHUOy7tgcJs\""
+                  }
+                }
+              },
+              "request-id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "5e102b60079c5000"
+                  }
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Root=1-605217ef-572e2d72441b50ce2fbf7b2b;Sampled=0"
+                  }
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 14:53:35 GMT"
+                  }
+                }
+              },
+              "X-Cache": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Miss from cloudfront"
+                  }
+                }
+              },
+              "Via": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1.1 07c18636d05168ab2f68b990a4913cf5.cloudfront.net (CloudFront)"
+                  }
+                }
+              },
+              "X-Amz-Cf-Pop": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "DFW50-C1"
+                  }
+                }
+              },
+              "X-Amz-Cf-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Yk2yPF_74aeW_wmCPee7dV6_LTH9PdRWecYTARrHnOfyADkmRhKSCg=="
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200-Nomatchingdatafound"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "401": {
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "26"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 15:26:43 GMT"
+                  }
+                }
+              },
+              "x-amzn-RequestId": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "8d7a9593-bb57-4340-a5db-20210c8a81c3"
+                  }
+                }
+              },
+              "x-amzn-ErrorType": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "UnauthorizedException"
+                  }
+                }
+              },
+              "x-amz-apigw-id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "cVnj9HVKoAMFfCw="
+                  }
+                }
+              },
+              "X-Cache": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Error from cloudfront"
+                  }
+                }
+              },
+              "Via": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1.1 9805d3579496be819558262e04360abb.cloudfront.net (CloudFront)"
+                  }
+                }
+              },
+              "X-Amz-Cf-Pop": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "DFW50-C1"
+                  }
+                }
+              },
+              "X-Amz-Cf-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "XciRJ7-_4ydNxJC6IlndCH45ezQqCUcTdG2k0yjF5pNIS7Lj29jNGg=="
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401-Invalid~1expiredtoken1"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "AccessToken": []
+          }
+        ],
+        "operationId": "FetchFacilityProviders",
+        "summary": "Fetch Facility Providers",
+        "description": "Retrieves Institutional Provider data, includes Part A Hospitals, Dialysis Facilities, Skilled Nursing Facilities (SNF), but exclude FQHC, RHC and CAH providers.\n\nReturned data includes Medicare Exclusion Check, Active Enrollment Check, Legal Business Name, one or more CCN and CCN Legal Business Names.\n\n> Please note that CCN is required to identify the provider, so must verify CCN value returned."
+      }
+    },
+    "/pecos/v1/secure/providers/fqhc-rhc-cah-providers": {
+      "post": {
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FetchFQHC%2CRHC%2CCAHProvidersRequest"
+              },
+              "example": {
+                "tin": "123456789",
+                "npi": "1234567890"
+              }
+            }
+          },
+          "required": true
+        },
+        "tags": ["Provider Vetting"],
+        "responses": {
+          "200": {
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "67"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 15:02:26 GMT"
+                  }
+                }
+              },
+              "x-amzn-RequestId": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "f243f085-8b4c-4938-8b7e-74b482a2ce39"
+                  }
+                }
+              },
+              "x-dns-prefetch-control": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "off"
+                  }
+                }
+              },
+              "x-xss-protection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1; mode=block"
+                  }
+                }
+              },
+              "access-control-allow-origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "strict-transport-security": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "max-age=15552000; includeSubDomains"
+                  }
+                }
+              },
+              "x-frame-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "SAMEORIGIN"
+                  }
+                }
+              },
+              "x-amzn-Remapped-content-length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "67"
+                  }
+                }
+              },
+              "x-amzn-Remapped-connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "close"
+                  }
+                }
+              },
+              "x-download-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "noopen"
+                  }
+                }
+              },
+              "x-amz-apigw-id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "cVkAZFH4IAMFpuw="
+                  }
+                }
+              },
+              "x-content-type-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "nosniff"
+                  }
+                }
+              },
+              "etag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"43-Vmyo+WmdHj22x8UbZHUOy7tgcJs\""
+                  }
+                }
+              },
+              "request-id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "5e102d6673dc5000"
+                  }
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Root=1-60521a02-5172bdac083aebdd6adc41ce;Sampled=0"
+                  }
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 15:02:26 GMT"
+                  }
+                }
+              },
+              "X-Cache": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Miss from cloudfront"
+                  }
+                }
+              },
+              "Via": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1.1 07c18636d05168ab2f68b990a4913cf5.cloudfront.net (CloudFront)"
+                  }
+                }
+              },
+              "X-Amz-Cf-Pop": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "DFW50-C1"
+                  }
+                }
+              },
+              "X-Amz-Cf-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Mw-_YVHYEjwcNe58OKlSNcfWehcfk6UJfZtg58ZzwRRzVAmbLldK8A=="
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200-Nomatchingdatafound"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "401": {
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "26"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 15:01:40 GMT"
+                  }
+                }
+              },
+              "x-amzn-RequestId": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "4ec832ee-1714-49f2-9ec5-d2d194ebe810"
+                  }
+                }
+              },
+              "x-amzn-ErrorType": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "UnauthorizedException"
+                  }
+                }
+              },
+              "x-amz-apigw-id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "cVj5HG6KIAMFTAw="
+                  }
+                }
+              },
+              "X-Cache": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Error from cloudfront"
+                  }
+                }
+              },
+              "Via": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1.1 07c18636d05168ab2f68b990a4913cf5.cloudfront.net (CloudFront)"
+                  }
+                }
+              },
+              "X-Amz-Cf-Pop": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "DFW50-C1"
+                  }
+                }
+              },
+              "X-Amz-Cf-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "UJ007-RcupYF3bghjirjSpV2eZeOUagRq29iMaoZ9Oa6pinQSVAibw=="
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401-InvalidToken~1ExpiredCredentials1"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "AccessToken": []
+          }
+        ],
+        "operationId": "FetchFQHC,RHC,CAHProviders",
+        "summary": "Fetch FQHC, RHC, CAH Providers",
+        "description": "\nRetrieves Institutional Provider data, includes only FQHC, RHC and CAH providers.\n\nReturned data includes Medicare Exclusion Check, Active Enrollment Check, Legal Business Name, one or more CCN and CCN Legal Business Names.\n\n> Please note that CCN is required to identify the provider, so must verify CCN value returned."
+      }
+    },
+    "/pecos/v1/secure/providers/suppliers": {
+      "post": {
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FetchSuppliersRequest"
+              },
+              "example": {
+                "tin": "370682924",
+                "npi": "1043270499"
+              }
+            }
+          },
+          "required": true
+        },
+        "tags": ["Provider Vetting"],
+        "responses": {
+          "200": {
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "293"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 15:08:32 GMT"
+                  }
+                }
+              },
+              "x-amzn-RequestId": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "d1c2dbb5-92cf-4ebc-a031-079eff45f79d"
+                  }
+                }
+              },
+              "x-dns-prefetch-control": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "off"
+                  }
+                }
+              },
+              "x-xss-protection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1; mode=block"
+                  }
+                }
+              },
+              "access-control-allow-origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "strict-transport-security": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "max-age=15552000; includeSubDomains"
+                  }
+                }
+              },
+              "x-frame-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "SAMEORIGIN"
+                  }
+                }
+              },
+              "x-amzn-Remapped-content-length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "293"
+                  }
+                }
+              },
+              "x-amzn-Remapped-connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "close"
+                  }
+                }
+              },
+              "x-download-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "noopen"
+                  }
+                }
+              },
+              "x-amz-apigw-id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "cVk5eF-YIAMF4gg="
+                  }
+                }
+              },
+              "x-content-type-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "nosniff"
+                  }
+                }
+              },
+              "etag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"125-4ged1jzJGv31sgQKU7mp0GD5UWA\""
+                  }
+                }
+              },
+              "request-id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "5e102ecb2d1c5000"
+                  }
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Root=1-60521b6f-7ab9b6ab68b5741549182cf2;Sampled=0"
+                  }
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 15:08:32 GMT"
+                  }
+                }
+              },
+              "X-Cache": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Miss from cloudfront"
+                  }
+                }
+              },
+              "Via": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1.1 07c18636d05168ab2f68b990a4913cf5.cloudfront.net (CloudFront)"
+                  }
+                }
+              },
+              "X-Amz-Cf-Pop": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "DFW50-C1"
+                  }
+                }
+              },
+              "X-Amz-Cf-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "ZzMUw-AL36gzTaJ_qOHHPt29SZfEtAkKwfyt_X0i-kt20qDUC8kLgg=="
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200-Success3"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "401": {
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "26"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 15:26:53 GMT"
+                  }
+                }
+              },
+              "x-amzn-RequestId": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "5f0c47ba-8868-48b4-bcf4-4b9726d0553e"
+                  }
+                }
+              },
+              "x-amzn-ErrorType": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "UnauthorizedException"
+                  }
+                }
+              },
+              "x-amz-apigw-id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "cVnllG-FoAMFaWg="
+                  }
+                }
+              },
+              "X-Cache": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Error from cloudfront"
+                  }
+                }
+              },
+              "Via": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1.1 9805d3579496be819558262e04360abb.cloudfront.net (CloudFront)"
+                  }
+                }
+              },
+              "X-Amz-Cf-Pop": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "DFW50-C1"
+                  }
+                }
+              },
+              "X-Amz-Cf-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "2lYrTuMTVi_Cfb5OxfLc4cjZMnOcdXWfjZwulg0A0WIq7dOjqT6plQ=="
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401-Invalid~1expiredtoken1"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "AccessToken": []
+          }
+        ],
+        "operationId": "FetchSuppliers",
+        "summary": "Fetch Suppliers",
+        "description": "Retrieves Organizational Provider data, includes all Part B providers such as Group Practices.\n\nReturned data includes Medicare Exclusion Check, Active Enrollment Check, PTAN and Legal Business Name."
+      }
+    },
+    "/pecos/v1/secure/providers/fqhc-rhc-cah-physicians": {
+      "post": {
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FetchFQHC%2CRHC%2CCAHPhysiciansRequest"
+              },
+              "example": {
+                "npi": "1234567890"
+              }
+            }
+          },
+          "required": true
+        },
+        "tags": ["Provider Vetting"],
+        "responses": {
+          "200": {
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "64"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 15:06:05 GMT"
+                  }
+                }
+              },
+              "x-amzn-RequestId": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "b35b88a1-2457-4a24-a7ff-096b4e4d0f83"
+                  }
+                }
+              },
+              "x-dns-prefetch-control": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "off"
+                  }
+                }
+              },
+              "x-xss-protection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1; mode=block"
+                  }
+                }
+              },
+              "access-control-allow-origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              },
+              "strict-transport-security": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "max-age=15552000; includeSubDomains"
+                  }
+                }
+              },
+              "x-frame-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "SAMEORIGIN"
+                  }
+                }
+              },
+              "x-amzn-Remapped-content-length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "64"
+                  }
+                }
+              },
+              "x-amzn-Remapped-connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "close"
+                  }
+                }
+              },
+              "x-download-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "noopen"
+                  }
+                }
+              },
+              "x-amz-apigw-id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "cVkijFt5IAMFZbQ="
+                  }
+                }
+              },
+              "x-content-type-options": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "nosniff"
+                  }
+                }
+              },
+              "etag": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "W/\"40-KV57iiaV/L/bsXqh7vt8TT6rnsw\""
+                  }
+                }
+              },
+              "request-id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "5e102e3bfc5c5000"
+                  }
+                }
+              },
+              "X-Amzn-Trace-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Root=1-60521add-4caed33f66bacf7d32c49828;Sampled=0"
+                  }
+                }
+              },
+              "x-amzn-Remapped-date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 15:06:05 GMT"
+                  }
+                }
+              },
+              "X-Cache": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Miss from cloudfront"
+                  }
+                }
+              },
+              "Via": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1.1 07c18636d05168ab2f68b990a4913cf5.cloudfront.net (CloudFront)"
+                  }
+                }
+              },
+              "X-Amz-Cf-Pop": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "DFW50-C1"
+                  }
+                }
+              },
+              "X-Amz-Cf-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "s9pjxKEC7J3wfqgPUKC5VIuXAA7EcCjtW-bcEAsy4DNwG5dBt8xw6g=="
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/200-Nomatchingdatafound"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "401": {
+            "headers": {
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "26"
+                  }
+                }
+              },
+              "Connection": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "keep-alive"
+                  }
+                }
+              },
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Wed, 17 Mar 2021 15:27:02 GMT"
+                  }
+                }
+              },
+              "x-amzn-RequestId": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "bb4a0dc7-3195-4f48-8378-3512e6bc5db2"
+                  }
+                }
+              },
+              "x-amzn-ErrorType": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "UnauthorizedException"
+                  }
+                }
+              },
+              "x-amz-apigw-id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "cVnm-HiKoAMFgnQ="
+                  }
+                }
+              },
+              "X-Cache": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Error from cloudfront"
+                  }
+                }
+              },
+              "Via": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1.1 9805d3579496be819558262e04360abb.cloudfront.net (CloudFront)"
+                  }
+                }
+              },
+              "X-Amz-Cf-Pop": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "DFW50-C1"
+                  }
+                }
+              },
+              "X-Amz-Cf-Id": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "hB2_yD2NunWH0Jb_O0a0HYHkwTzpqZcc1Npyf9EPOv1Bh57FXZUNZg=="
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/401-Invalid~1expiredtoken1"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "AccessToken": []
+          }
+        ],
+        "operationId": "FetchFQHC,RHC,CAHPhysicians",
+        "summary": "Fetch FQHC, RHC, CAH Physicians",
+        "description": "Retrieves Physicians working at FQHC, RHC and CAH.\n\nReturned data includes Medicare Exclusion Check, Active Enrollment Check, PTAN and Legal Business Name."
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "GetAccessTokenRequest": {
+        "title": "GetAccessTokenRequest",
+        "required": ["client_id", "client_secret", "scope", "grant_type"],
+        "type": "object",
+        "properties": {
+          "client_id": {
+            "type": "string"
+          },
+          "client_secret": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          },
+          "grant_type": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "client_id": "{{API_CLIENT_ID}}",
+          "client_secret": "{{API_KEY_SECRET}}",
+          "scope": "pecos",
+          "grant_type": "client_credentials"
+        }
+      },
+      "400BadCredentials1": {
+        "title": "400BadCredentials1",
+        "required": ["message"],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "message": "Bad Data: Invalid client credentials"
+        }
+      },
+      "200-Success": {
+        "title": "200-Success",
+        "required": ["access_token", "token_type", "expires_in", "scope"],
+        "type": "object",
+        "properties": {
+          "access_token": {
+            "type": "string"
+          },
+          "token_type": {
+            "type": "string"
+          },
+          "expires_in": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "access_token": "ACCESS.TOKEN.SAMPLE",
+          "token_type": "Bearer",
+          "expires_in": "900",
+          "scope": "pecos"
+        }
+      },
+      "CheckforMedicareExclusionRequest": {
+        "title": "CheckforMedicareExclusionRequest",
+        "required": ["tin"],
+        "type": "object",
+        "properties": {
+          "tin": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "tin": "123456789"
+        }
+      },
+      "200-Success1": {
+        "title": "200-Success1",
+        "required": ["mdcrExclsnChk"],
+        "type": "object",
+        "properties": {
+          "mdcrExclsnChk": {
+            "type": "boolean"
+          }
+        },
+        "example": {
+          "mdcrExclsnChk": true
+        }
+      },
+      "401-Invalid/expiredtoken1": {
+        "title": "401-Invalid/expiredtoken1",
+        "required": ["message"],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "message": "Unauthorized"
+        }
+      },
+      "FetchenrollmentTINRequest": {
+        "title": "FetchenrollmentTINRequest",
+        "required": ["tin", "npi"],
+        "type": "object",
+        "properties": {
+          "tin": {
+            "type": "string"
+          },
+          "npi": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "tin": "123456789",
+          "npi": "1234567890"
+        }
+      },
+      "200-Success2": {
+        "title": "200-Success2",
+        "required": ["status", "data"],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean"
+          },
+          "data": {
+            "$ref": "#/components/schemas/Data"
+          }
+        },
+        "example": {
+          "status": false,
+          "data": {
+            "enrlmtStatus": false,
+            "solePrprtrFlag": false,
+            "mdcrExclsnChk": true,
+            "enrlmtTin": "123456789",
+            "npi": "1234567890"
+          }
+        }
+      },
+      "Data": {
+        "title": "Data",
+        "required": [
+          "enrlmtStatus",
+          "solePrprtrFlag",
+          "mdcrExclsnChk",
+          "blgTin",
+          "lbn",
+          "npiType",
+          "enrlmtTin",
+          "npi"
+        ],
+        "type": "object",
+        "properties": {
+          "enrlmtStatus": {
+            "type": "boolean"
+          },
+          "solePrprtrFlag": {
+            "type": "boolean"
+          },
+          "mdcrExclsnChk": {
+            "type": "boolean"
+          },
+          "blgTin": {
+            "nullable": true,
+            "type": "string"
+          },
+          "lbn": {
+            "nullable": true,
+            "type": "string"
+          },
+          "npiType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "enrlmtTin": {
+            "type": "string"
+          },
+          "npi": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "enrlmtStatus": false,
+          "solePrprtrFlag": false,
+          "mdcrExclsnChk": true,
+          "enrlmtTin": "123456789",
+          "npi": "1234567890"
+        }
+      },
+      "FetchIndividualProvidersRequest": {
+        "title": "FetchIndividualProvidersRequest",
+        "required": ["tin", "npi"],
+        "type": "object",
+        "properties": {
+          "tin": {
+            "type": "string"
+          },
+          "npi": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "tin": "123456789",
+          "npi": "12345677890"
+        }
+      },
+      "200-Success3": {
+        "title": "200-Success3",
+        "required": ["result", "data"],
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "boolean"
+          },
+          "data": {
+            "description": "",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Data1"
+            }
+          }
+        },
+        "example": {
+          "result": true,
+          "data": [
+            {
+              "ptanList": ["1234567", "0123456"],
+              "ccnList": [],
+              "enrolmentStatus": true,
+              "tin": "123456789",
+              "lbnName": "LastName FirstName",
+              "firstName": "First",
+              "lastName": "LastName",
+              "npi": "1234567890",
+              "npiType": "IND",
+              "specialtyCode": "39",
+              "specialty": "NEPHROLOGY",
+              "par_stus": ""
+            }
+          ]
+        }
+      },
+      "Data1": {
+        "title": "Data1",
+        "required": [
+          "ptanList",
+          "ccnList",
+          "enrolmentStatus",
+          "tin",
+          "lbnName",
+          "firstName",
+          "lastName",
+          "npi",
+          "npiType",
+          "specialtyCode",
+          "specialty",
+          "reInstatementDate",
+          "par_stus"
+        ],
+        "type": "object",
+        "properties": {
+          "ptanList": {
+            "description": "",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ccnList": {
+            "description": "",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "enrolmentStatus": {
+            "type": "boolean"
+          },
+          "tin": {
+            "type": "string"
+          },
+          "lbnName": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "npi": {
+            "type": "string"
+          },
+          "npiType": {
+            "type": "string"
+          },
+          "specialtyCode": {
+            "type": "string"
+          },
+          "specialty": {
+            "type": "string"
+          },
+          "reInstatementDate": {
+            "nullable": true,
+            "type": "string"
+          },
+          "par_stus": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "ptanList": ["1234567", "0123456"],
+          "ccnList": [],
+          "enrolmentStatus": true,
+          "tin": "123456789",
+          "lbnName": "LastName FirstName",
+          "firstName": "First",
+          "lastName": "LastName",
+          "npi": "1234567890",
+          "npiType": "IND",
+          "specialtyCode": "39",
+          "specialty": "NEPHROLOGY",
+          "par_stus": ""
+        }
+      },
+      "200-Nomatchingdatafound": {
+        "title": "200-Nomatchingdatafound",
+        "required": ["result", "responseTxt"],
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "boolean"
+          },
+          "responseTxt": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "result": false,
+          "responseTxt": "No data found for the given Input "
+        }
+      },
+      "FetchFacilityProvidersRequest": {
+        "title": "FetchFacilityProvidersRequest",
+        "required": ["tin", "npi"],
+        "type": "object",
+        "properties": {
+          "tin": {
+            "type": "string"
+          },
+          "npi": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "tin": "123456789",
+          "npi": "1234567890"
+        }
+      },
+      "FetchFQHC,RHC,CAHProvidersRequest": {
+        "title": "FetchFQHC,RHC,CAHProvidersRequest",
+        "required": ["tin", "npi"],
+        "type": "object",
+        "properties": {
+          "tin": {
+            "type": "string"
+          },
+          "npi": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "tin": "123456789",
+          "npi": "1234567890"
+        }
+      },
+      "401-InvalidToken/ExpiredCredentials1": {
+        "title": "401-InvalidToken/ExpiredCredentials1",
+        "required": ["message"],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "message": "Unauthorized"
+        }
+      },
+      "200-Success4": {
+        "title": "200-Success4",
+        "required": ["result", "data"],
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "boolean"
+          },
+          "data": {
+            "description": "",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Data2"
+            }
+          }
+        },
+        "example": {
+          "result": true,
+          "data": [
+            {
+              "ptanList": [],
+              "ccnList": [
+                {
+                  "ccnVal": "123456",
+                  "ccnLbnVal": "N/A",
+                  "facTypeCode": "17",
+                  "facTypeDesc": "RURAL HEALTH CLINIC",
+                  "spclty_cd": "17",
+                  "spclty_desc": "RURAL HEALTH CLINIC"
+                }
+              ],
+              "enrolmentStatus": true,
+              "tin": "123456789",
+              "lbnName": "ABC MEDICAL GROUP PC",
+              "firstName": "",
+              "lastName": "",
+              "npi": "1234567890",
+              "npiType": "ORG",
+              "specialtyCode": "17",
+              "specialty": "RURAL HEALTH CLINIC",
+              "par_stus": ""
+            }
+          ]
+        }
+      },
+      "Data2": {
+        "title": "Data2",
+        "required": [
+          "ptanList",
+          "ccnList",
+          "enrolmentStatus",
+          "tin",
+          "lbnName",
+          "firstName",
+          "lastName",
+          "npi",
+          "npiType",
+          "specialtyCode",
+          "specialty",
+          "reInstatementDate",
+          "par_stus"
+        ],
+        "type": "object",
+        "properties": {
+          "ptanList": {
+            "description": "",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ccnList": {
+            "description": "",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CcnList"
+            }
+          },
+          "enrolmentStatus": {
+            "type": "boolean"
+          },
+          "tin": {
+            "type": "string"
+          },
+          "lbnName": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "npi": {
+            "type": "string"
+          },
+          "npiType": {
+            "type": "string"
+          },
+          "specialtyCode": {
+            "type": "string"
+          },
+          "specialty": {
+            "type": "string"
+          },
+          "reInstatementDate": {
+            "nullable": true,
+            "type": "string"
+          },
+          "par_stus": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "ptanList": [],
+          "ccnList": [
+            {
+              "ccnVal": "123456",
+              "ccnLbnVal": "N/A",
+              "facTypeCode": "17",
+              "facTypeDesc": "RURAL HEALTH CLINIC",
+              "spclty_cd": "17",
+              "spclty_desc": "RURAL HEALTH CLINIC"
+            }
+          ],
+          "enrolmentStatus": true,
+          "tin": "123456789",
+          "lbnName": "ABC MEDICAL GROUP PC",
+          "firstName": "",
+          "lastName": "",
+          "npi": "1234567890",
+          "npiType": "ORG",
+          "specialtyCode": "17",
+          "specialty": "RURAL HEALTH CLINIC",
+          "par_stus": ""
+        }
+      },
+      "CcnList": {
+        "title": "CcnList",
+        "required": [
+          "ccnVal",
+          "ccnLbnVal",
+          "facTypeCode",
+          "facTypeDesc",
+          "spclty_cd",
+          "spclty_desc"
+        ],
+        "type": "object",
+        "properties": {
+          "ccnVal": {
+            "type": "string"
+          },
+          "ccnLbnVal": {
+            "type": "string"
+          },
+          "facTypeCode": {
+            "type": "string"
+          },
+          "facTypeDesc": {
+            "type": "string"
+          },
+          "spclty_cd": {
+            "type": "string"
+          },
+          "spclty_desc": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "ccnVal": "123456",
+          "ccnLbnVal": "N/A",
+          "facTypeCode": "17",
+          "facTypeDesc": "RURAL HEALTH CLINIC",
+          "spclty_cd": "17",
+          "spclty_desc": "RURAL HEALTH CLINIC"
+        }
+      },
+      "FetchSuppliersRequest": {
+        "title": "FetchSuppliersRequest",
+        "required": ["tin", "npi"],
+        "type": "object",
+        "properties": {
+          "tin": {
+            "type": "string"
+          },
+          "npi": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "tin": "370682924",
+          "npi": "1043270499"
+        }
+      },
+      "FetchFQHC,RHC,CAHPhysiciansRequest": {
+        "title": "FetchFQHC,RHC,CAHPhysiciansRequest",
+        "required": ["npi"],
+        "type": "object",
+        "properties": {
+          "npi": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "npi": "1234567890"
+        }
+      },
+      "200-Success6": {
+        "title": "200-Success6",
+        "required": ["result", "data"],
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "boolean"
+          },
+          "data": {
+            "description": "",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Data4"
+            }
+          }
+        },
+        "example": {
+          "result": true,
+          "data": [
+            {
+              "enrolmentStatus": true,
+              "lbnName": "FirstName LastNaame",
+              "firstName": "FirstName",
+              "lastName": "LastName",
+              "npi": "1234567890",
+              "npiType": "IND",
+              "par_stus": ""
+            }
+          ]
+        }
+      },
+      "Data4": {
+        "title": "Data4",
+        "required": [
+          "enrolmentStatus",
+          "lbnName",
+          "firstName",
+          "lastName",
+          "npi",
+          "npiType",
+          "reInstatementDate",
+          "par_stus"
+        ],
+        "type": "object",
+        "properties": {
+          "enrolmentStatus": {
+            "type": "boolean"
+          },
+          "lbnName": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "npi": {
+            "type": "string"
+          },
+          "npiType": {
+            "type": "string"
+          },
+          "reInstatementDate": {
+            "nullable": true,
+            "type": "string"
+          },
+          "par_stus": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "enrolmentStatus": true,
+          "lbnName": "FirstName LastNaame",
+          "firstName": "FirstName",
+          "lastName": "LastName",
+          "npi": "1234567890",
+          "npiType": "IND",
+          "par_stus": ""
+        }
+      }
+    },
+    "securitySchemes": {
+      "AccessToken": {
+        "scheme": "bearer",
+        "type": "http",
+        "description": "Use OAUTH2 Client Credentials flow to retrieve access token and use Access Token to access end points"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Authorization",
+      "description": "4i PECOS API uses OAUTH2 client credentials flow. API Consumer applications must first be registered with 4i Identity Management (IDM) to obtain client_id and client_secret. \n\nEach API Key is restricted up to 10 white listed source IP addresses or CIDR blocks and explicitly requested resource scopes. While obtaining access token, it is possible to use one or more resource scopes from the permitted resource list.\n\n> This Provider Vetting API requires \"pecos\" resource scope.  "
+    },
+    {
+      "name": "Provider Vetting",
+      "description": "Provider Vetting API offered by 4i System offers the following checks.\n\n- Medicare Enrollment Status: Verify if provider/supplier enrollments are active or inactive. To participate and receive payments, Model participants must have an active enrollment within PECOS. Additionally, some models will verify an individual or organization enrollment’s attributes, such as TIN and Legal Business Name.\n- Sole Proprietor Status: Verify a sole proprietor’s enrollment and billing TIN relationship in PECOS. Verify the billing TIN is “linked to single entity” as per the current CPI Vetting Contractor (Acumen) logic.\n- Medicare Exclusion (aka OIG) Check: Verify if a physician group or practitioner is listed in the Medicare Exclusion Database based on TIN. Some models looks for this flag and provides status for the Model participant.\n- CCN Check: Some models verify the CCN of institutional facilities, SNF, FQHC, RHC, CAH method II, are enrolled in PECOS by checking the CCN link to TIN.\n- Provider-Supplier List: Some models may require the Provider-Supplier list (Reassignments and employment arrangements for all CCNs and individual NPIs) for all model Participant TINs to verify that participants have annually certified.\n\nAs most of the model participants are either Part A providers or Part B physicians/suppliers, the current PECOS data APIs are used to verify all of the Part A providers and Part B physicians/suppliers. \n\n> The Provider Data APIs can be customized to limit to prohibited participants. Each of the CMMI models has prohibited participants for example, DMEPOS suppliers are prohibited for certain models."
+    }
+  ]
+}
