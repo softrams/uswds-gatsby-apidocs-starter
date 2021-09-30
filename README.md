@@ -82,7 +82,7 @@ This can have a significant impact in many ways.
 
 Add new API Reference Pages by simply creating a new page in docs folder
 
-## Pages
+## Guides
 
 Create additional guides in Markdown by creating new page in guides folder, that are automatically added to menu (under Guides).
 
