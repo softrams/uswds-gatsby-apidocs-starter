@@ -27,15 +27,15 @@ This can have a significant impact in many ways.
 ## Roadmap
 
 - [x] Create API Docs starter
-- [ ] User Research
-- [ ] Identify user persona & key groups
-  - [ ] Organizations & Developers new to APIs
-  - [ ] Organizations & Developers that may have some experience consuming APIs
-  - [ ] Organizations & Developers that build applications using APIs
-- [ ] Identify key information useful for API developers, API Governance and API Consumers
-- [ ] Review API Documentation offered on different services
-- [ ] Create UX Designs for content layout and presentation
-- [ ] Create markdown templates with default content
+- [x] User Research
+- [x] Identify user persona & key groups
+  - [x] Organizations & Developers new to APIs
+  - [x] Organizations & Developers that may have some experience consuming APIs
+  - [x] Organizations & Developers that build applications using APIs
+- [x] Identify key information useful for API developers, API Governance and API Consumers
+- [x] Review API Documentation offered on different services
+- [x] Create UX Designs for content layout and presentation
+- [x] Create markdown templates with default content
 - [ ] Provide options to manage content via headless CMS Systems
 
 ## 🚀 Quick start

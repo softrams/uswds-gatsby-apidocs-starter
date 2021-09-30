@@ -34,7 +34,7 @@ sidenav: true
             Join the developer community on 
             <a
             class="usa-summary-box__link"
-            href="https://github.com/softrams/bcda-dpc-dx/issues"
+            href="https://github.com/softrams/uswds-gatsby-apidocs-starter/issues"
             >
             Github
             </a>
