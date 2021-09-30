@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -10,16 +11,17 @@ const IndexPage = () => (
       <div className="grid-container">
         <div className="usa-hero__callout">
           <h1 className="usa-hero__heading">
-            <span className="usa-hero__heading--alt">Hero callout:</span>Bring
-            attention to a project priority
+            <span className="usa-hero__heading--alt">Now Available:</span>
+            New Payer Data Exchange API
           </h1>
           <p>
-            Support the callout with some short explanatory text. You don’t need
-            more than a couple of sentences.
+            Exchange data seamlessly with other payers for timely benefits
+            coordination or transitions.
           </p>
-          <a className="usa-button" href="javascript:void(0)">
-            Call to action
-          </a>
+
+          <Link to="/overview" className="usa-button">
+            <span>Learn More</span>
+          </Link>
         </div>
       </div>
     </section>
@@ -28,21 +30,21 @@ const IndexPage = () => (
       <div className="grid-row grid-gap">
         <div className="tablet:grid-col-4">
           <h2 className="font-heading-xl margin-top-0 tablet:margin-bottom-0">
-            A tagline highlights your approach
+            A secure and standard way to exchange critical healthcare data
           </h2>
         </div>
         <div className="tablet:grid-col-8 usa-prose">
           <p>
-            The tagline should inspire confidence and interest, focusing on the
-            value that your overall approach offers to your audience. Use a
-            heading typeface and keep your tagline to just a few words, and
-            don’t confuse or mystify.
+            We are dedicated to enhancing and protecting the health and
+            well-being of all Americans and improve patient access in the U.S.
+            health care system.
           </p>
           <p>
-            Use the right side of the grid to explain the tagline a bit more.
-            What are your goals? How do you do your work? Write in the present
-            tense, and stay brief here. People who are interested can find
-            details on internal pages.
+            We are building an ecosystem of API products that allows Patients,
+            Medicare Providers, Accountable Care Organizations, Alternative
+            Payment Model participants and others in the eco-system to exchange
+            healthcare data using the Fast Healthcare Interoperability Resources
+            (FHIR&reg;).
           </p>
         </div>
       </div>
@@ -54,39 +56,38 @@ const IndexPage = () => (
           <div className="usa-media-block tablet:grid-col">
             <img
               className="usa-media-block__img"
-              src="/assets/img/circle-124.png"
+              src="/assets/img/correct8.svg"
               alt="Alt text"
             />
             <div className="usa-media-block__body">
               <h2 className="usa-graphic-list__heading">
-                Graphic headings can vary.
+                <Link to="/docs/payer-to-payer">
+                  Payer Data Exchange (PDex) API
+                </Link>
               </h2>
               <p>
-                Graphic headings can be used a few different ways, depending on
-                what your landing page is for. Highlight your values, specific
-                program areas, or results.
+                Exchange data seamlessly with other payers for timely benefits
+                coordination or transitions.
               </p>
             </div>
           </div>
           <div className="usa-media-block tablet:grid-col">
             <img
               className="usa-media-block__img"
-              src="/assets/img/circle-124.png"
+              src="/assets/img/chevron-right-white.svg"
               alt="Alt text"
             />
             <div className="usa-media-block__body">
               <h2 className="usa-graphic-list__heading">
-                Stick to 6 or fewer words.
+                More APIs coming soon.
               </h2>
               <p>
-                Keep body text to about 30 words. They can be shorter, but try
-                to be somewhat balanced across all four. It creates a clean
-                appearance with good spacing.
+                Please check back later as more CMS FHIR&reg; APIs coming soon
               </p>
             </div>
           </div>
         </div>
-        <div className="usa-graphic-list__row grid-row grid-gap">
+        {/* <div className="usa-graphic-list__row grid-row grid-gap">
           <div className="usa-media-block tablet:grid-col">
             <img
               className="usa-media-block__img"
@@ -95,7 +96,7 @@ const IndexPage = () => (
             />
             <div className="usa-media-block__body">
               <h2 className="usa-graphic-list__heading">
-                Never highlight anything without a goal.
+                Participant Management API
               </h2>
               <p>
                 For anything you want to highlight here, understand what your
@@ -112,7 +113,7 @@ const IndexPage = () => (
             />
             <div className="usa-media-block__body">
               <h2 className="usa-graphic-list__heading">
-                Could also have 2 or 6.
+                Agreement Management API
               </h2>
               <p>
                 In addition to your goal, find out your users’ goals. What do
@@ -122,22 +123,134 @@ const IndexPage = () => (
             </div>
           </div>
         </div>
+        <div className="usa-graphic-list__row grid-row grid-gap">
+          <div className="usa-media-block tablet:grid-col">
+            <img
+              className="usa-media-block__img"
+              src="/assets/img/circle-124.png"
+              alt="Alt text"
+            />
+            <div className="usa-media-block__body">
+              <h2 className="usa-graphic-list__heading">User Management API</h2>
+              <p>
+                For anything you want to highlight here, understand what your
+                users know now, and what activity or impression you want from
+                them after they see it.
+              </p>
+            </div>
+          </div>
+          <div className="usa-media-block tablet:grid-col">
+            <img
+              className="usa-media-block__img"
+              src="/assets/img/circle-124.png"
+              alt="Alt text"
+            />
+            <div className="usa-media-block__body">
+              <h2 className="usa-graphic-list__heading">And more</h2>
+              <p>
+                In addition to your goal, find out your users’ goals. What do
+                they want to know or do that supports your mission? Use these
+                headings to show those.
+              </p>
+            </div>
+          </div>
+        </div> */}
       </div>
     </section>
 
     <section id="test-section-id" className="usa-section">
       <div className="grid-container">
-        <h2 className="font-heading-xl margin-y-0">Section heading</h2>
+        <h2 className="font-heading-xl margin-y-0">Getting Started</h2>
         <p className="usa-intro">
-          Everything up to this point should help people understand your agency
-          or project: who you are, your goal or mission, and how you approach
-          it. Use this section to encourage them to act. Describe why they
-          should get in touch here, and use an active verb on the button below.
-          “Get in touch,” “Learn more,” and so on.
+          We have assembled resources for every team to get started and leverage
+          FHIR APIs. Choose the best first step to get started.
         </p>
-        <a className="usa-button usa-button--big" href="#">
-          Call to action
-        </a>
+
+        <ul class="usa-card-group">
+          <li class="tablet:grid-col-6 usa-card">
+            <div class="usa-card__container">
+              <header class="usa-card__header">
+                <h2 class="usa-card__heading">New to APIs?</h2>
+              </header>
+              <div class="usa-card__body">
+                <p>
+                  An API, or Application Programming Interface, is a set of
+                  rules that define how applications or devices can connect to
+                  and communicate with each other. Check out these handy
+                  resources to learn more about APIs.
+                </p>
+              </div>
+              <div class="usa-card__footer">
+                <Link to="/guides/api-resources">
+                  <button class="usa-button">View API Resources</button>
+                </Link>
+              </div>
+            </div>
+          </li>
+
+          <li class="tablet:grid-col-6 usa-card">
+            <div class="usa-card__container">
+              <header class="usa-card__header">
+                <h2 class="usa-card__heading">New to FHIR?</h2>
+              </header>
+              <div class="usa-card__body">
+                <p>
+                  FHIR&reg;, Fast Healthcare Interoperability Resources is a
+                  standard describing data formats and elements and an
+                  Application Programming Interface (API) for exchanging
+                  electronic health records.
+                </p>
+              </div>
+              <div class="usa-card__footer">
+                <Link to="/guides/fhir-resources">
+                  <button class="usa-button">View FHIR Resources</button>
+                </Link>
+              </div>
+            </div>
+          </li>
+
+          <li class="tablet:grid-col-6 usa-card">
+            <div class="usa-card__container">
+              <header class="usa-card__header">
+                <h2 class="usa-card__heading">Ready to go?</h2>
+              </header>
+              <div class="usa-card__body">
+                <p>
+                  At CMS, we are building an eco-system of FHIR API products. If
+                  you are already familiar with APIs and FHIR eco-system, learn
+                  more about the new <b>Payer Data Exchange (PDex) API</b> to
+                  get started.
+                </p>
+              </div>
+              <div class="usa-card__footer">
+                <Link to="/overview">
+                  <button class="usa-button">Get Started</button>
+                </Link>
+              </div>
+            </div>
+          </li>
+
+          <li class="tablet:grid-col-6 usa-card">
+            <div class="usa-card__container">
+              <header class="usa-card__header">
+                <h2 class="usa-card__heading">Got some questions?</h2>
+              </header>
+              <div class="usa-card__body">
+                <p>
+                  Got any questions about APIs or FHIR in general, or Payer to
+                  Payer API in particular, check out the Frequently Asked
+                  Questions page or see the <b>Support</b> page to reach out to
+                  us or community at large.
+                </p>
+              </div>
+              <div class="usa-card__footer">
+                <Link to="/guides/support">
+                  <button class="usa-button">Visit Support Page</button>
+                </Link>
+              </div>
+            </div>
+          </li>
+        </ul>
       </div>
     </section>
   </Layout>

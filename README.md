@@ -1,6 +1,6 @@
-# Gatsby Starter with US Web Design System (USWDS)
+# 4Innovation API Documentation
 
-A [Gatsby](https://www.gatsbyjs.org/) starter with [US Web Design System](https://designsystem.digital.gov/).
+Built with [Gatsby](https://www.gatsbyjs.org/) starter with [US Web Design System](https://designsystem.digital.gov/).
 
 Kick off your project with this default boilerplate. This starter template currently includes support for writing pages in Markdown and API Sandbox using Swagger UI. Please checkback later as we add more support.
 

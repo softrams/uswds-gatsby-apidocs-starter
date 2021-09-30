@@ -11,7 +11,7 @@ import { Helmet } from "react-helmet"
 import { withPrefix, useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
-import "../../static/assets/css/uswds.min.css"
+import "../../static/assets/css/uswds.css"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -84,11 +84,9 @@ const Layout = ({ children }) => {
                 />
                 <div className="usa-media-block__body">
                   <p>
-                    <strong>The .gov means it’s official.</strong>
-                    <br />
-                    Federal government websites often end in .gov or .mil.
-                    Before sharing sensitive information, make sure you’re on a
-                    federal government site.
+                    <strong>Official websites use .gov</strong>
+                    <br />A .gov website belongs to an official government
+                    organization in the United States.
                   </p>
                 </div>
               </div>
@@ -100,11 +98,10 @@ const Layout = ({ children }) => {
                 />
                 <div className="usa-media-block__body">
                   <p>
-                    <strong>The site is secure.</strong>
-                    <br />
-                    The <strong>https://</strong> ensures that you are
-                    connecting to the official website and that any information
-                    you provide is encrypted and transmitted securely.
+                    <strong>Secure .gov websites use HTTPS</strong>
+                    <br />A <strong>lock</strong> or <strong>https://</strong>{" "}
+                    means you’ve safely connected to the .gov website. Share
+                    sensitive information only on official, secure websites.
                   </p>
                 </div>
               </div>
@@ -122,7 +119,7 @@ const Layout = ({ children }) => {
         <main id="main-content">{children}</main>
         <footer className="usa-footer usa-footer--slim">
           <div className="grid-container usa-footer__return-to-top">
-            <a href="#">Return to top</a>
+            <a href="#main-content">Return to top</a>
           </div>
           <div className="usa-footer__primary-section">
             <div className="usa-footer__primary-container grid-row">
@@ -132,33 +129,33 @@ const Layout = ({ children }) => {
                     <li className="mobile-lg:grid-col-6 desktop:grid-col-auto usa-footer__primary-content">
                       <a
                         className="usa-footer__primary-link"
-                        href="javascript:void(0);"
+                        href="https://bcda-dpc-dev.softrams.cloud:9443/"
                       >
-                        Primary link
+                        PDex API Home
                       </a>
                     </li>
                     <li className="mobile-lg:grid-col-6 desktop:grid-col-auto usa-footer__primary-content">
                       <a
                         className="usa-footer__primary-link"
-                        href="javascript:void(0);"
+                        href="https://developer.cms.gov/"
                       >
-                        Primary link
+                        CMS Developer Tools
                       </a>
                     </li>
                     <li className="mobile-lg:grid-col-6 desktop:grid-col-auto usa-footer__primary-content">
                       <a
                         className="usa-footer__primary-link"
-                        href="javascript:void(0);"
+                        href="https://www.cms.gov"
                       >
-                        Primary link
+                        CMS.gov
                       </a>
                     </li>
                     <li className="mobile-lg:grid-col-6 desktop:grid-col-auto usa-footer__primary-content">
                       <a
                         className="usa-footer__primary-link"
-                        href="javascript:void(0);"
+                        href="https://www.hhs.gov"
                       >
-                        Primary link
+                        HHS.gov
                       </a>
                     </li>
                   </ul>
@@ -169,14 +166,19 @@ const Layout = ({ children }) => {
                   <div className="grid-row grid-gap">
                     <div className="grid-col-auto mobile-lg:grid-col-12 desktop:grid-col-auto">
                       <div className="usa-footer__contact-info">
-                        <a href="tel:1-800-555-5555">(800) CALL-GOVT</a>
+                        <a href="tel:1-888-734-6433">(888) 734-6433</a>
                       </div>
                     </div>
                     <div className="grid-col-auto mobile-lg:grid-col-12 desktop:grid-col-auto">
                       <div className="usa-footer__contact-info">
-                        <a href="mailto:info@agency.gov">info@agency.gov</a>
+                        <a href="tel:1-888-734-6563">TTY/TDD (888) 734-6563</a>
                       </div>
                     </div>
+                    {/* <div className="grid-col-auto mobile-lg:grid-col-12 desktop:grid-col-auto">
+                      <div className="usa-footer__contact-info">
+                        <a href="mailto:info@agency.gov">info@agency.gov</a>
+                      </div>
+                    </div> */}
                   </div>
                 </address>
               </div>
@@ -188,12 +190,14 @@ const Layout = ({ children }) => {
                 <div className="grid-col-auto">
                   <img
                     className="usa-footer__logo-img"
-                    src="/assets/img/logo-img.png"
+                    src="/assets/img/cms-logo.svg"
                     alt=""
                   />
                 </div>
                 <div className="grid-col-auto">
-                  <h3 className="usa-footer__logo-heading">Name of Agency</h3>
+                  <h3 className="usa-footer__logo-heading">
+                    Centers for Medicare & Medicaid Services
+                  </h3>
                 </div>
               </div>
             </div>
