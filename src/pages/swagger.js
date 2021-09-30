@@ -14,7 +14,7 @@ const SwaggerUIPage = ({ data }) => (
       {/* <h1>API Sandbox</h1> */}
       <div className="usa-sections">
         {/* URL or path to local file in assets folder */}
-        <SwaggerUI url="/assets/swagger.json" docExpansion="list" />
+        <SwaggerUI url="/assets/bluebutton/openapi.yaml" docExpansion="list" />
       </div>
     </div>
   </Layout>

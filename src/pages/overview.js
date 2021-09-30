@@ -35,10 +35,9 @@ const SecondPage = () => (
                   Key Usecase
                 </h3>
                 <div class="usa-summary-box__text">
-                  When a beneficiary switches from traditional Medicare to
-                  Medicare Advantage (MA) plans, MA Plan systems can use this
-                  API as part of onboarding the beneficiary to retrieve
-                  beneficiary data (for the last 5 years) to co-ordinate the
+                  When a beneficiary switches from one payer to another, new
+                  payer systems can use this API as part of onboarding the
+                  beneficiary to retrieve beneficiary data to co-ordinate the
                   transition.
                 </div>
               </div>
