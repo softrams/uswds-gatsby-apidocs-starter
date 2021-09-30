@@ -72,7 +72,7 @@
               ]
             },
             "url": {
-              "raw": "https://bcda-dpc-api-dev.softrams.cloud/public/token",
+              "raw": "{{FHIR_BASE_URL}}/auth/token",
               "protocol": "https",
               "host": ["bcda-dpc-api-dev", "softrams", "cloud"],
               "path": ["public", "token"]
@@ -309,7 +309,7 @@
   "variable": [
     {
       "key": "FHIR_BASE_URL",
-      "value": "https://bcda-dpc-dev.softrams.cloud:9443/fhir-server/api/v4"
+      "value": "https://pdex-api.softrams.cloud:9443/fhir-server/api/v4"
     },
     {
       "key": "JOB_STATUS_LOCATION",

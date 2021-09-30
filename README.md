@@ -1,4 +1,4 @@
-# 4Innovation API Documentation
+# FHIR API Hub Documentation
 
 Built with [Gatsby](https://www.gatsbyjs.org/) starter with [US Web Design System](https://designsystem.digital.gov/).
 
@@ -23,6 +23,18 @@ This can have a significant impact in many ways.
 - Consistent, delightful and modern experiences for customers across Federal Agencies
 - Rapid prototyping and development for Federal Agencies and Federal Contractors without having to reinvent the wheel
 - Accelerates innovation and delivery to market
+
+## Key Features
+
+- Supports single or multiple FHIR APIs to build documentation sites
+- Supports embedding swagger file within the site or simply link to external site
+- Includes place holder pages for most commonly needed API documentation covering teams of
+  varying maturity and exposure to FHIR APIs, based on modal User Research
+- Code highlighting with prism
+- Easily publish documentation as Github pages `npm run deploy`
+- Create documentation with Markdown files
+- Uses US Web Design System
+- Documentation references and support pages follow best practices based on User Research for better engagement of API developers
 
 ## Roadmap
 
@@ -66,9 +78,13 @@ This can have a significant impact in many ways.
 
     Open the `my-default-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
 
+## API Reference Pages
+
+Add new API Reference Pages by simply creating a new page in docs folder
+
 ## Pages
 
-You can create additional pages in Markdown in docs folder, that are automatically added to menu (under Pages). Default starter comes with three pages for example.
+Create additional guides in Markdown by creating new page in guides folder, that are automatically added to menu (under Guides).
 
 ## API Sandbox with Swagger UI
 
