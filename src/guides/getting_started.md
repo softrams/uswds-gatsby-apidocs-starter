@@ -54,7 +54,7 @@ sidenav: true
         </a>
         </li>
         <li>
-        <a href="https://bcda-dpc-dev.softrams.cloud:9443/openapi/ui/">
+        <a href="https://YOUR-API-END-POINT/openapi/ui/">
             Try API in Browser via Swagger UI
         </a>
         </li>
@@ -68,7 +68,7 @@ sidenav: true
     <ul>
         <li>
         Download
-        <a href="https://bcda-dpc-dev.softrams.cloud:9443/openapi/ui/">
+        <a href="https://YOUR-API-END-POINT/openapi/ui/">
             Open API Specification
         </a>
         </li>

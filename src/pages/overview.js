@@ -103,7 +103,7 @@ const SecondPage = () => (
                   </li>
                   <li>
                     Or you may{" "}
-                    <a href="https://bcda-dpc-dev.softrams.cloud:9443/openapi/ui/">
+                    <a href="https://YOUR-API-END-POINT/openapi/ui/">
                       try API within browser via Swagger UI
                     </a>
                   </li>
@@ -126,7 +126,7 @@ const SecondPage = () => (
                 <ul>
                   <li>
                     Download{" "}
-                    <a href="https://bcda-dpc-dev.softrams.cloud:9443/openapi/ui/">
+                    <a href="https://YOUR-API-END-POINT/openapi/ui/">
                       Open API Specification
                     </a>
                   </li>

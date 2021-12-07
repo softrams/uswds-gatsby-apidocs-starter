@@ -114,7 +114,7 @@ See <b>Example 01</b> below for a sample request contents.
 
 ```bash
 curl --location --request POST \
-'https://bcda-dpc-dev.softrams.cloud:9443/fhir-server/api/v4/Patient/$member-match' \
+'https://YOUR-API-END-POINT/fhir-server/api/v4/Patient/$member-match' \
 --header 'Content-Type: application/fhir+json' \
 --header 'Authorization: <AccessToken>' \
 --data-raw '{
@@ -435,7 +435,7 @@ Fetch bundled output using $everything operation on Patient resource. Invoke Pat
 ```bash
 
 curl --location --request GET \
-'https://bcda-dpc-dev.softrams.cloud:9443/fhir-server/api/v4/Patient/564730725596728/$everything' \
+'https://YOUR-API-END-POINT/fhir-server/api/v4/Patient/564730725596728/$everything' \
 --header 'Authorization: <AccessToken>'
 ```
 
@@ -454,7 +454,7 @@ See <b>Example 05</b> below for a sample response contents.
     "total": 11,
     "entry": [
         {
-            "fullUrl": "https://bcda-dpc-dev.softrams.cloud:9443/fhir-server/api/v4/Patient/564730725596728",
+            "fullUrl": "https://YOUR-API-END-POINT/fhir-server/api/v4/Patient/564730725596728",
             "resource": {
                 "resourceType": "Patient",
                 "id": "564730725596728"
@@ -527,7 +527,7 @@ See <b>Example 06</b> below for a sample request contents.
 
 ```bash
 curl --location --request GET \
-'https://bcda-dpc-dev.softrams.cloud:9443/fhir-server/api/v4/Patient/564730725596728/$everything' \
+'https://YOUR-API-END-POINT/fhir-server/api/v4/Patient/564730725596728/$everything' \
 --header 'Prefer: respond-async' \
 --header 'Authorization: <AccessToken>' \
 ```
@@ -543,7 +543,7 @@ Response will have empty body and header will includee the 'content-location' in
  HTTP/2 202
  date: Mon, 09 Aug 2021 21:32:10 GMT
  content-length: 0
- content-location: https://bcda-dpc-dev.softrams.cloud:9443/fhir-server/api/v4/$bulkdata-status?job=cOg7dz0hh%2B9pNGeNMS7kxQ
+ content-location: https://YOUR-API-END-POINT/fhir-server/api/v4/$bulkdata-status?job=cOg7dz0hh%2B9pNGeNMS7kxQ
  content-language: en-US
 ```
 
@@ -556,22 +556,22 @@ Call Job Status API end point, returned in previous step to check for status. Un
 ```bash
 {
     "transactionTime": "2021-08-09T21:31:52.24Z",
-    "request": "https://bcda-dpc-dev.softrams.cloud:9443/fhir-server/api/v4/Patient/564730725596728/$everything",
+    "request": "https://YOUR-API-END-POINT/fhir-server/api/v4/Patient/564730725596728/$everything",
     "requiresAccessToken": false,
     "output": [
         {
             "type": "Coverage",
-            "url": "https://bcda-dpc-dev.softrams.cloud:9443/bulk/data/ibfk9QGuZDlSZBmDgyhCWfW3naBYgGGdOUQk9G1gVRE/Coverage_1.ndjson",
+            "url": "https://YOUR-API-END-POINT/bulk/data/ibfk9QGuZDlSZBmDgyhCWfW3naBYgGGdOUQk9G1gVRE/Coverage_1.ndjson",
             "count": 2
         },
         {
             "type": "Patient",
-            "url": "https://bcda-dpc-dev.softrams.cloud:9443/bulk/data/ibfk9QGuZDlSZBmDgyhCWfW3naBYgGGdOUQk9G1gVRE/Patient_1.ndjson",
+            "url": "https://YOUR-API-END-POINT/bulk/data/ibfk9QGuZDlSZBmDgyhCWfW3naBYgGGdOUQk9G1gVRE/Patient_1.ndjson",
             "count": 1
         },
         {
             "type": "ExplanationOfBenefit",
-            "url": "https://bcda-dpc-dev.softrams.cloud:9443/bulk/data/rlK9h7vi5A7Tc277tGIsggTnXpqtkBED_s-IVQZ7QsM/ExplanationOfBenefit_1.ndjson",
+            "url": "https://YOUR-API-END-POINT/bulk/data/rlK9h7vi5A7Tc277tGIsggTnXpqtkBED_s-IVQZ7QsM/ExplanationOfBenefit_1.ndjson",
             "count": 8
         },
     ]

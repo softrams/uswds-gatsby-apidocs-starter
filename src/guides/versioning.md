@@ -31,11 +31,11 @@ sidenav: true
         <p class="usa-alert__text">
         You may download the full specification here by clicking on
         this
-        <a href="https://bcda-dpc-dev.softrams.cloud:9443/openapi">
+        <a href="https://YOUR-API-END-POINT/openapi">
             <span> link to download Open API Specification</span>
         </a>
         or can interactively browse and execute within browser 
-        <a href="https://bcda-dpc-dev.softrams.cloud:9443/openapi/ui">
+        <a href="https://YOUR-API-END-POINT/openapi/ui">
             <span>here at the Open API Sandbox </span>
         </a>
         .

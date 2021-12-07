@@ -129,7 +129,7 @@ const Layout = ({ children }) => {
                     <li className="mobile-lg:grid-col-6 desktop:grid-col-auto usa-footer__primary-content">
                       <a
                         className="usa-footer__primary-link"
-                        href="https://bcda-dpc-dev.softrams.cloud:9443/"
+                        href="https://YOUR-API-END-POINT/"
                       >
                         PDex API Home
                       </a>

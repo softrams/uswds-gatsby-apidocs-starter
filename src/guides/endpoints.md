@@ -23,9 +23,9 @@ sidenav: true
             FHIR API Base URL : 
             <a
             class="usa-summary-box__link"
-            href="https://bcda-dpc-dev.softrams.cloud:9443/fhir-server/api/v4"
+            href="https://YOUR-API-END-POINT/fhir-server/api/v4"
             >
-            https://bcda-dpc-dev.softrams.cloud:9443/fhir-server/api/v4
+            https://YOUR-API-END-POINT/fhir-server/api/v4
             </a>
             .
         </li>
@@ -33,18 +33,18 @@ sidenav: true
             OpenAPI Specification : 
             <a
             class="usa-summary-box__link"
-            href="https://bcda-dpc-dev.softrams.cloud:9443/openapi/ui/"
+            href="https://YOUR-API-END-POINT/openapi/ui/"
             >
-            https://bcda-dpc-dev.softrams.cloud:9443/openapi/ui/
+            https://YOUR-API-END-POINT/openapi/ui/
             </a>
         </li>
                 <li>
             Documentation : 
             <a
             class="usa-summary-box__link"
-            href="https://bcda-dpc-dev.softrams.cloud:9443/"
+            href="https://YOUR-API-END-POINT/"
             >
-            https://bcda-dpc-dev.softrams.cloud:9443/
+            https://YOUR-API-END-POINT/
             </a>
         </li>
         </ul>
