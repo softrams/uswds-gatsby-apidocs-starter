@@ -76,7 +76,7 @@ See detailed workflows supported along with sample requests and responses. You n
 Use the following curl command to retrieve access Token. Please replace `<Base64 encoded value of clientid:clientsecret>` with value created from client ID and client Secrets provided in the Github documentation. Please refer to Sample Client Credentials section for some test credentials.
 
 ```bash
-curl --location --request POST 'https://bcda-dpc-api-dev.softrams.cloud/public/token' \
+curl --location --request POST 'https://YOUR-API-END-POINT/public/token' \
 --header 'Accept: application/json' \
 --header 'Authorization: Basic <Base64 encoded value of clientid:clientsecret>' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
