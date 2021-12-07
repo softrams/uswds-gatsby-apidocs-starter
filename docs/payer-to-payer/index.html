@@ -66,7 +66,7 @@ aria-labelledby="summary-box-key-information"
 </div>
 <h3>Retrieving Access Token via Curl</h3>
 <p>Use the following curl command to retrieve access Token. Please replace <code class="language-text">&lt;Base64 encoded value of clientid:clientsecret></code> with value created from client ID and client Secrets provided in the Github documentation. Please refer to Sample Client Credentials section for some test credentials.</p>
-<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">curl</span> --location --request POST <span class="token string">'https://bcda-dpc-api-dev.softrams.cloud/public/token'</span> <span class="token punctuation">\</span>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">curl</span> --location --request POST <span class="token string">'https://YOUR-API-END-POINT/public/token'</span> <span class="token punctuation">\</span>
 --header <span class="token string">'Accept: application/json'</span> <span class="token punctuation">\</span>
 --header <span class="token string">'Authorization: Basic &lt;Base64 encoded value of clientid:clientsecret>'</span> <span class="token punctuation">\</span>
 --header <span class="token string">'Content-Type: application/x-www-form-urlencoded'</span> <span class="token punctuation">\</span>

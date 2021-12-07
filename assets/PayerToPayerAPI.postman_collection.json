@@ -74,7 +74,7 @@
             "url": {
               "raw": "{{FHIR_BASE_URL}}/auth/token",
               "protocol": "https",
-              "host": ["bcda-dpc-api-dev", "softrams", "cloud"],
+              "host": ["YOUR-API-END-POINT"],
               "path": ["public", "token"]
             }
           },
