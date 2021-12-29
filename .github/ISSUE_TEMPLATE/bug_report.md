@@ -1,9 +1,10 @@
 ---
 name: Bug report
 about: Report a bug in api-docs-starter
-title: ""
+title: ''
 labels: bug
-assignees: ""
+assignees: ''
+
 ---
 
 **Describe the bug**
