@@ -1,8 +1,8 @@
-# FHIR API Hub Documentation
+# API Hub Documentation
 
 Built with [Gatsby](https://www.gatsbyjs.org/) starter with [US Web Design System](https://designsystem.digital.gov/).
 
-Kick off your project with this default boilerplate. This starter template currently includes support for writing pages in Markdown and API Sandbox using Swagger UI. Please checkback later as we add more support.
+Kick off your API project or a suite of APIs with this default boilerplate. This starter template uses Hub concept to feature one or more API products and currently includes support for writing pages in Markdown and providing API Sandbox using Swagger UI.
 
 You may checkout the demo app at https://uswds-gatsby-apidocs-starter.softrams.cloud.
 
@@ -23,6 +23,8 @@ This can have a significant impact in many ways.
 - Consistent, delightful and modern experiences for customers across Federal Agencies
 - Rapid prototyping and development for Federal Agencies and Federal Contractors without having to reinvent the wheel
 - Accelerates innovation and delivery to market
+
+> **Note:** This work is NOT endorsed, sponsored, funded or supported in anyway by the US Government or Centers for Medicare & Medicaid Services or any other agency. Our work is an open source project and initially built by our teams at Softrams and is being shared with the community. We support Federal Agencies and build empowering digital services for them. So we built this as a template to help our teams and other Federal Agencies and Federal Contractors build their own API documentation. Use of Centers for Medicare & Medicaid Services in the template is strictly meant for illustration purposes only, to showcase how multiple API products can be supported as an integrated API Hub for better, consistent and seamless experience.
 
 ## Key Features
 

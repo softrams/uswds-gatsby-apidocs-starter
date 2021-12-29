@@ -253,6 +253,31 @@ const IndexPage = () => (
         </ul>
       </div>
     </section>
+    <section id="disclaimer-section-id" class="grid-container">
+      <div class="usa-alert usa-alert--warning">
+        <div class="usa-alert__body">
+          <h4 class="usa-alert__heading">
+            This is just a sample template meant for illustration purposes
+          </h4>
+          <p class="usa-alert__text">
+            This work is NOT endorsed, sponsored, funded or supported in anyway
+            by the US Government or Centers for Medicare & Medicaid Services or
+            any other agency. Our work is an open source project and initially
+            built by our teams at Softrams and is being shared with the
+            community. We support Federal Agencies and build empowering digital
+            services for them. So we built this as a template to help our teams
+            and other Federal Agencies and Federal Contractors build their own
+            API documentation.
+          </p>
+          <p class="usa-alert__text">
+            Use of Centers for Medicare & Medicaid Services in the template is
+            strictly meant for illustration purposes only, to showcase how
+            multiple API products can be supported as an integrated API Hub for
+            better, consistent and seamless experience.
+          </p>
+        </div>
+      </div>
+    </section>
   </Layout>
 )
 
